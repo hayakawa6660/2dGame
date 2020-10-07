@@ -107,6 +107,9 @@
     <Filter Include="ソース ファイル\Library\Components\PolygonSetComponent">
       <UniqueIdentifier>{e4720601-6a6c-4953-96b7-0d1f5d098183}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Scene\Play">
+      <UniqueIdentifier>{40c2580b-b238-41a6-b586-cdc40fa71ff7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Library\app.cpp">
@@ -204,6 +207,9 @@
     </ClCompile>
     <ClCompile Include="Library\Components\PolygonSetComponent\PolygonSetComponent.cpp">
       <Filter>ソース ファイル\Library\Components\PolygonSetComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\PlayScene.cpp">
+      <Filter>ソース ファイル\Scene\Play</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -320,6 +326,9 @@
     </ClInclude>
     <ClInclude Include="Library\Components\PolygonSetComponent\PolygonSetComponent.h">
       <Filter>ソース ファイル\Library\Components\PolygonSetComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\PlayScene.h">
+      <Filter>ソース ファイル\Scene\Play</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

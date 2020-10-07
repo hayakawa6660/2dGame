@@ -32,6 +32,7 @@
     <ClCompile Include="Library\main.cpp" />
     <ClCompile Include="Library\SceneManager\SceneManager.cpp" />
     <ClCompile Include="Source\Scene\Boot\BootScene.cpp" />
+    <ClCompile Include="Source\Scene\Play\PlayScene.cpp" />
     <ClCompile Include="Source\Scene\SceneFactory.cpp" />
     <ClCompile Include="Source\Scene\Title\TitleScene.cpp" />
     <ClCompile Include="Source\System\CacheManager\CacheManager.cpp" />
@@ -70,6 +71,7 @@
     <ClInclude Include="Library\SceneManager\SceneBase.h" />
     <ClInclude Include="Library\SceneManager\SceneManager.h" />
     <ClInclude Include="Source\Scene\Boot\BootScene.h" />
+    <ClInclude Include="Source\Scene\Play\PlayScene.h" />
     <ClInclude Include="Source\Scene\SceneFactory.h" />
     <ClInclude Include="Source\Scene\Title\TitleScene.h" />
     <ClInclude Include="Source\System\CacheManager\CacheManager.h" />
