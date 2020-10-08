@@ -110,6 +110,12 @@
     <Filter Include="ソース ファイル\Scene\Play">
       <UniqueIdentifier>{40c2580b-b238-41a6-b586-cdc40fa71ff7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Scene\Play\Player">
+      <UniqueIdentifier>{3120f895-2492-41ea-889f-d811d475cad1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Play\Player\State">
+      <UniqueIdentifier>{02694fb5-f666-4494-956d-f6a026127c5f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Library\app.cpp">
@@ -210,6 +216,9 @@
     </ClCompile>
     <ClCompile Include="Source\Scene\Play\PlayScene.cpp">
       <Filter>ソース ファイル\Scene\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\Player\Player.cpp">
+      <Filter>ソース ファイル\Scene\Play\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -329,6 +338,9 @@
     </ClInclude>
     <ClInclude Include="Source\Scene\Play\PlayScene.h">
       <Filter>ソース ファイル\Scene\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\Player\Player.h">
+      <Filter>ソース ファイル\Scene\Play\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
