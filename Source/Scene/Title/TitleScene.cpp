@@ -59,6 +59,11 @@ void TitleScene::Update()
 		p->SphereToSpere(p2);
 	}
 
+	ControllerManager * p = CommonObjects::GetInstance()->FindGameObject<ControllerManager>("ControllerManager");
+	if (p->GetKeyOnceInput(InputComponent::KEY_ID::SPACE))
+	{
+		SceneManager::GetInstance()->ChangeScene("PlayScene");
+	}
 #if DEBUG
 	Debug::DebugPrintf(200, 0, "Title", "Title");
 	//Debug::DebugPrintf(200, 20, "Title", "threadNum : %d", p->CurrentNum());

@@ -107,6 +107,30 @@
     <Filter Include="ソース ファイル\Scene\Title\TestCollision">
       <UniqueIdentifier>{30bcb0fb-6278-46b1-bc45-6c838c224014}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Scene\Play">
+      <UniqueIdentifier>{2c32e918-684e-4e6c-8cb4-f4e23078ae1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Play\FieldManager">
+      <UniqueIdentifier>{a8dc0a43-d8f9-4452-8ecc-7c8681de2761}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Play\FieldManager\Normal">
+      <UniqueIdentifier>{366aa177-f785-4041-b4da-ea3558e444da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Play\Player">
+      <UniqueIdentifier>{6b0edf64-1ee4-49c4-8421-0672eda35170}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Play\Player\States">
+      <UniqueIdentifier>{b93815d0-0cef-43c0-afa8-28678b13842c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Play\Player\States\Jump">
+      <UniqueIdentifier>{558fb4ec-31bc-4927-9390-cd022af9ab10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Play\Player\States\Wait">
+      <UniqueIdentifier>{0ae58912-5958-4d08-9192-e002713291ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Play\Player\States\Move">
+      <UniqueIdentifier>{b89d7291-c184-4fc2-b9dc-5c3197387bf8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Library\app.cpp">
@@ -207,6 +231,33 @@
     </ClCompile>
     <ClCompile Include="Source\Scene\Title\TestCollision\TestCollision.cpp">
       <Filter>ソース ファイル\Scene\Title\TestCollision</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\PlayScene.cpp">
+      <Filter>ソース ファイル\Scene\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\FieldManager\FieldBase.cpp">
+      <Filter>ソース ファイル\Scene\Play\FieldManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\FieldManager\FieldManager.cpp">
+      <Filter>ソース ファイル\Scene\Play\FieldManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\FieldManager\NormalFloor\NormalFloor.cpp">
+      <Filter>ソース ファイル\Scene\Play\FieldManager\Normal</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\Player\Player.cpp">
+      <Filter>ソース ファイル\Scene\Play\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\Player\PlayerMovement.cpp">
+      <Filter>ソース ファイル\Scene\Play\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\Player\State\Jump\PlayerJumpState.cpp">
+      <Filter>ソース ファイル\Scene\Play\Player\States\Jump</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\Player\State\Wait\WaitState.cpp">
+      <Filter>ソース ファイル\Scene\Play\Player\States\Wait</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\Player\State\Move\PlayerMoveState.cpp">
+      <Filter>ソース ファイル\Scene\Play\Player\States\Move</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -323,6 +374,36 @@
     </ClInclude>
     <ClInclude Include="Source\Scene\Title\TestCollision\TestCollision.h">
       <Filter>ソース ファイル\Scene\Title\TestCollision</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\PlayScene.h">
+      <Filter>ソース ファイル\Scene\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\FieldManager\FieldBase.h">
+      <Filter>ソース ファイル\Scene\Play\FieldManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\FieldManager\FieldManager.h">
+      <Filter>ソース ファイル\Scene\Play\FieldManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\FieldManager\NormalFloor\NormalFloor.h">
+      <Filter>ソース ファイル\Scene\Play\FieldManager\Normal</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\Player\Player.h">
+      <Filter>ソース ファイル\Scene\Play\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\Player\PlayerMovement.h">
+      <Filter>ソース ファイル\Scene\Play\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\Player\State\PlayerStateBase.h">
+      <Filter>ソース ファイル\Scene\Play\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\Player\State\Jump\PlayerJumpState.h">
+      <Filter>ソース ファイル\Scene\Play\Player\States\Jump</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\Player\State\Wait\WaitState.h">
+      <Filter>ソース ファイル\Scene\Play\Player\States\Wait</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\Player\State\Move\PlayerMoveState.h">
+      <Filter>ソース ファイル\Scene\Play\Player\States\Move</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
