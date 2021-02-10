@@ -3,7 +3,7 @@
 #include <assert.h>
 #include "Boot/BootScene.h"
 #include "Title/titleScene.h"
-//#include "Play/PlayScene.h"
+#include "Play/PlayScene.h"
 
 SceneBase* SceneFactory::CreateFirst()
 {
@@ -15,11 +15,9 @@ SceneBase * SceneFactory::Create(const std::string & name)
 	if (name == "TitleScene") {
 		return new TitleScene();
 	}
-	/*
 	if (name == "PlayScene") {
 		return new PlayScene();
 	}
-	*/
 	MessageBox(NULL, ("éüÇÃÉVÅ[ÉìÇÕÇ†ÇËÇ‹ÇπÇÒ\n" + name).c_str(), "SceneFactory", MB_ICONERROR | MB_OK);
 	assert(false);
 	return nullptr;

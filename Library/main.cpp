@@ -37,6 +37,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		AppDraw();
 		ScreenFlip();
 	}
+	ClearDrawScreen();
+	DrawFormatString(0, 0, 0xffffff, "ÉQÅ[ÉÄÇèIóπÇµÇƒÇ¢Ç‹Ç∑...");
+	ScreenFlip();
+
 	AppRelease();
 
 	Effkseer_End();

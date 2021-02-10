@@ -12,11 +12,7 @@ CompressManager::CompressManager(GameObject * _scene) :
 
 CompressManager::~CompressManager()
 {
-	for (auto it : m_outFilePath)
-	{
-		DeleteDirectory(it.first.c_str());
-	}
-	m_outFilePath.clear();
+	AllDeleteDirectory();
 }
 
 bool CompressManager::Unzip(IShellDispatch *_pShellDispatch, WCHAR* _lpszZipPath, WCHAR* _lpszOutPath)
@@ -93,6 +89,15 @@ int CompressManager::CharToWchart(const char * _pSrc, wchar_t * _pDest, const si
 		, _TRUNCATE
 	);
 	return 0;
+}
+
+void CompressManager::AllDeleteDirectory()
+{
+	for (auto it : m_outFilePath)
+	{
+		DeleteDirectory(it.first.c_str());
+	}
+	m_outFilePath.clear();
 }
 
 bool CompressManager::DeleteDirectory(LPCTSTR _lpPathName)

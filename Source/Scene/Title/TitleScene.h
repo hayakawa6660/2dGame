@@ -12,7 +12,7 @@ public:
 private:
 	void Update()override;
 	void Draw()override;
-	void NewClasses();
+	void Load();
 	//void DrawFString(int _x, int _y, const char * _format...);
 private:
 	std::list<GameObject*> m_list;

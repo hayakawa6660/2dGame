@@ -7,10 +7,12 @@
 TestCollision::TestCollision(SceneBase * _scene) :
 	GameObject(_scene)
 {
+	/*
 	{
-		CompressManager * c = CommonObjects::GetInstance()->FindGameObject<CompressManager>("CompressManager");
+		CompressManager * c = CommonObjects::GetInstance()->FindGameObject<CompressManager>("SceneCompress");
 		c->UnCompress("data\\Player.zip", "data\\Player");
 	}
+	*/
 }
 
 TestCollision::~TestCollision()
@@ -20,19 +22,23 @@ TestCollision::~TestCollision()
 
 void TestCollision::Load()
 {
+	/*
 	{
 		ResourceManager* p = CommonObjects::GetInstance()->FindGameObject<ResourceManager>("SceneResource");
 		p->ModelLoad("data\\Player\\gensin_syuzinkou_amb.mv1");
 	}
+	*/
 }
 
 void TestCollision::Start()
 {
+	/*
 	{
 		ResourceManager* p = CommonObjects::GetInstance()->FindGameObject<ResourceManager>("SceneResource");
 		int a = p->GetHandle("data\\Player\\gensin_syuzinkou_amb.mv1");
 		a += 0;
 	}
+	*/
 	m_collision = GameObject::AddComponent<CollisionComponent>("Col");
 	m_collision->SetEvent("Test", [&](Hit_Info _info) { Hoge(_info); });
 	m_collision->RemoveEvent("Test");

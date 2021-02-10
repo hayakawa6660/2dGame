@@ -110,6 +110,36 @@
     <Filter Include="ソース ファイル\System\CompressManager">
       <UniqueIdentifier>{5dbbeaae-782c-4d52-9d1b-d6a5d68eac16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Scene\Play">
+      <UniqueIdentifier>{60fdc10e-5208-42b4-a205-37e091f605d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Play\PlayState">
+      <UniqueIdentifier>{b4cf9da8-00bd-4e9f-a057-7e0094d9baba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Play\PlayState\PlayLoad">
+      <UniqueIdentifier>{51b90be3-c379-4133-a575-af5fbe5b2632}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Play\EnemyManager">
+      <UniqueIdentifier>{e2c7a28e-02e3-4b8c-8525-12c6ed4b9b04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Play\PlayState\PlayGame">
+      <UniqueIdentifier>{a746ea2d-442c-4fb6-a7e2-ba1f5eb154b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Play\Player">
+      <UniqueIdentifier>{0316322d-ed58-498d-8be1-cf2c56a05c31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Play\FieldManager">
+      <UniqueIdentifier>{ef9c68f9-8070-465a-a4c1-ae78474b8166}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Play\FieldManager\FieldObject">
+      <UniqueIdentifier>{cb5f2cda-e2d1-4ac6-9980-edbc8566e5d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Play\Camera">
+      <UniqueIdentifier>{78c50bce-b793-4328-be0b-b29a2450a787}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Play\Light">
+      <UniqueIdentifier>{c9f6a4c1-67d2-416b-9828-c215cb93002a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Library\app.cpp">
@@ -213,6 +243,33 @@
     </ClCompile>
     <ClCompile Include="Source\System\CompressManager\CompressManager.cpp">
       <Filter>ソース ファイル\System\CompressManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\PlayScene.cpp">
+      <Filter>ソース ファイル\Scene\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\PlayState\PlayLoad\PlayLoad.cpp">
+      <Filter>ソース ファイル\Scene\Play\PlayState\PlayLoad</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\EnemyManager\EnemyManager.cpp">
+      <Filter>ソース ファイル\Scene\Play\EnemyManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\PlayState\PlayGame\PlayGame.cpp">
+      <Filter>ソース ファイル\Scene\Play\PlayState\PlayGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\Player\Player.cpp">
+      <Filter>ソース ファイル\Scene\Play\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\FieldManager\FieldManager.cpp">
+      <Filter>ソース ファイル\Scene\Play\FieldManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\FieldManager\FieldObject\FIeldObject.cpp">
+      <Filter>ソース ファイル\Scene\Play\FieldManager\FieldObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\Camera\Camera.cpp">
+      <Filter>ソース ファイル\Scene\Play\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\Light\Light.cpp">
+      <Filter>ソース ファイル\Scene\Play\Light</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -332,6 +389,39 @@
     </ClInclude>
     <ClInclude Include="Source\System\CompressManager\CompressManager.h">
       <Filter>ソース ファイル\System\CompressManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\PlayScene.h">
+      <Filter>ソース ファイル\Scene\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\PlayState\PlayStateBase.h">
+      <Filter>ソース ファイル\Scene\Play\PlayState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\PlayState\PlayLoad\PlayLoad.h">
+      <Filter>ソース ファイル\Scene\Play\PlayState\PlayLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\EnemyManager\EnemyManager.h">
+      <Filter>ソース ファイル\Scene\Play\EnemyManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\PlayState\PlayGame\PlayGame.h">
+      <Filter>ソース ファイル\Scene\Play\PlayState\PlayGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\Player\Player.h">
+      <Filter>ソース ファイル\Scene\Play\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\FieldManager\FieldManager.h">
+      <Filter>ソース ファイル\Scene\Play\FieldManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\FieldManager\FieldBase.h">
+      <Filter>ソース ファイル\Scene\Play\FieldManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\FieldManager\FieldObject\FIeldObject.h">
+      <Filter>ソース ファイル\Scene\Play\FieldManager\FieldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\Camera\Camera.h">
+      <Filter>ソース ファイル\Scene\Play\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\Light\Light.h">
+      <Filter>ソース ファイル\Scene\Play\Light</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -11,7 +11,7 @@ Shader::Shader(SceneBase * _scene) :
 {
 	
 	{
-		CompressManager * c = CommonObjects::GetInstance()->FindGameObject<CompressManager>("CompressManager");
+		CompressManager * c = CommonObjects::GetInstance()->FindGameObject<CompressManager>("SystemCompress");
 		c->UnCompress("data\\Shader.zip", "data\\Shader");
 	}
 	//水面用ポリゴンのコンポーネントを生成

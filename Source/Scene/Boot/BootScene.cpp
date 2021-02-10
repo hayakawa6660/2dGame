@@ -19,7 +19,9 @@
 BootScene::BootScene()
 {
 	CommonObjects * p = CommonObjects::GetInstance();
-	p->CreateGameObject<CompressManager>("CompressManager");
+	p->CreateGameObject<CompressManager>("SceneCompress");
+	p->CreateGameObject<CompressManager>("SystemCompress");
+
 	p->CreateGameObject<ResourceManager>("SceneResource");
 	p->CreateGameObject<ResourceManager>("SystemResource");
 	p->CreateGameObject<ControllerManager>("ControllerManager");

@@ -10,6 +10,7 @@
 #include "Source/System/ControllerManager/ControllerManager.h"
 #include "Source/System/ThreadManager/ThreadManager.h"
 #include "Source/System/ResourceManager/ResourceManager.h"
+#include "Source/System/CompressManager/CompressManager.h"
 //Debug
 #include "Source/System/DebugManager/DebugManager.h"
 #include "Source/System/CompressManager/CompressManager.h"
@@ -20,8 +21,8 @@ TitleScene::TitleScene() :
 	CommonObjects * common = CommonObjects::GetInstance();
 	common->FindGameObject<FadeManager>("FadeManager")->SetFadeLevel(0);
 	m_thread = common->FindGameObject<ThreadManager>("ThreadManager");
+	m_thread->CreateThread<void>([this] { Load(); });
 
-	m_thread->CreateThread<void>([this] { NewClasses(); });
 	/*
 	TestCollision * p = SceneBase::CreateGameObject<TestCollision>("Test1");
 	{
@@ -49,6 +50,8 @@ TitleScene::TitleScene() :
 TitleScene::~TitleScene()
 {
 	Debug::ListAllClear();
+	CompressManager * p = CommonObjects::GetInstance()->FindGameObject<CompressManager>("SceneCompress");
+	p->AllDeleteDirectory();
 }
 
 void TitleScene::Update()
@@ -75,7 +78,13 @@ void TitleScene::Update()
 		}
 	}
 	break;
-	case STATE::PLAY:	SceneBase::Update();	break;
+	case STATE::PLAY:
+		SceneBase::Update();
+		ControllerManager * p = CommonObjects::GetInstance()->FindGameObject<ControllerManager>("ControllerManager");
+		if (p->GetKeyOnceInput(InputComponent::KEY_ID::SPACE))
+			SceneManager::GetInstance()->ChangeScene("PlayScene"); // ‹N“®‚ªI‚í‚Á‚½‚çTitle‚ğ•\¦
+
+		break;
 	}
 
 #if DEBUG
@@ -95,7 +104,7 @@ void TitleScene::Draw()
 	//DrawFString(10, 20, "AAA = %d", 20);
 }
 
-void TitleScene::NewClasses()
+void TitleScene::Load()
 {
 	TestCollision * p = SceneBase::CreateGameObject<TestCollision>("Test1");
 	{

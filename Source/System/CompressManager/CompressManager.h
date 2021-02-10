@@ -47,6 +47,7 @@ private:
 	//Unicode文字列変換関数(IShellがUnicodeのみ対応のため)
 	int CharToWchart(const char * _pSrc, wchar_t *_pDest, const size_t _sDestSize);
 public:
+	void AllDeleteDirectory();
 	/// <summary>
 	/// <para> フォルダ(ディレクトリ)を解凍する。</para>
 	/// </summary>
