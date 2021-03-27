@@ -450,5 +450,8 @@
     <ClInclude Include="Source\Scene\Play\Player\State\PlayerShotChainState .h">
       <Filter>ソース ファイル\Scene\Play\Player\State</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Scene\Play\Player\State\PlayerStateBase.h">
+      <Filter>ソース ファイル\Scene\Play\Player\State</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

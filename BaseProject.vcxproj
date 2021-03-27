@@ -92,6 +92,7 @@
     <ClInclude Include="Source\Scene\Play\Player\State\PlayerMovement.h" />
     <ClInclude Include="Source\Scene\Play\Player\State\PlayerMoveState.h" />
     <ClInclude Include="Source\Scene\Play\Player\State\PlayerShotChainState .h" />
+    <ClInclude Include="Source\Scene\Play\Player\State\PlayerStateBase.h" />
     <ClInclude Include="Source\Scene\Play\Player\State\PlayerWaitState.h" />
     <ClInclude Include="Source\Scene\Play\PlayScene.h" />
     <ClInclude Include="Source\Scene\Play\PlayState\PlayGame\PlayGame.h" />
