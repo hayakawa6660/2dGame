@@ -36,6 +36,10 @@
     <ClCompile Include="Source\Scene\Play\FieldManager\FieldObject\FIeldObject.cpp" />
     <ClCompile Include="Source\Scene\Play\Light\Light.cpp" />
     <ClCompile Include="Source\Scene\Play\Player\Player.cpp" />
+    <ClCompile Include="Source\Scene\Play\Player\State\PlayerMovement.cpp" />
+    <ClCompile Include="Source\Scene\Play\Player\State\PlayerMoveState.cpp" />
+    <ClCompile Include="Source\Scene\Play\Player\State\PlayerShotChainState .cpp" />
+    <ClCompile Include="Source\Scene\Play\Player\State\PlayerWaitState.cpp" />
     <ClCompile Include="Source\Scene\Play\PlayScene.cpp" />
     <ClCompile Include="Source\Scene\Play\PlayState\PlayGame\PlayGame.cpp" />
     <ClCompile Include="Source\Scene\Play\PlayState\PlayLoad\PlayLoad.cpp" />
@@ -85,6 +89,10 @@
     <ClInclude Include="Source\Scene\Play\FieldManager\FieldObject\FIeldObject.h" />
     <ClInclude Include="Source\Scene\Play\Light\Light.h" />
     <ClInclude Include="Source\Scene\Play\Player\Player.h" />
+    <ClInclude Include="Source\Scene\Play\Player\State\PlayerMovement.h" />
+    <ClInclude Include="Source\Scene\Play\Player\State\PlayerMoveState.h" />
+    <ClInclude Include="Source\Scene\Play\Player\State\PlayerShotChainState .h" />
+    <ClInclude Include="Source\Scene\Play\Player\State\PlayerWaitState.h" />
     <ClInclude Include="Source\Scene\Play\PlayScene.h" />
     <ClInclude Include="Source\Scene\Play\PlayState\PlayGame\PlayGame.h" />
     <ClInclude Include="Source\Scene\Play\PlayState\PlayLoad\PlayLoad.h" />

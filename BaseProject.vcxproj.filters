@@ -140,6 +140,9 @@
     <Filter Include="ソース ファイル\Scene\Play\Light">
       <UniqueIdentifier>{c9f6a4c1-67d2-416b-9828-c215cb93002a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Scene\Play\Player\State">
+      <UniqueIdentifier>{fce19f54-db1c-4939-9b4d-85af1f7a9f5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Library\app.cpp">
@@ -270,6 +273,18 @@
     </ClCompile>
     <ClCompile Include="Source\Scene\Play\Light\Light.cpp">
       <Filter>ソース ファイル\Scene\Play\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\Player\State\PlayerMovement.cpp">
+      <Filter>ソース ファイル\Scene\Play\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\Player\State\PlayerMoveState.cpp">
+      <Filter>ソース ファイル\Scene\Play\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\Player\State\PlayerShotChainState .cpp">
+      <Filter>ソース ファイル\Scene\Play\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\Player\State\PlayerWaitState.cpp">
+      <Filter>ソース ファイル\Scene\Play\Player\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -422,6 +437,18 @@
     </ClInclude>
     <ClInclude Include="Source\Scene\Play\Light\Light.h">
       <Filter>ソース ファイル\Scene\Play\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\Player\State\PlayerMovement.h">
+      <Filter>ソース ファイル\Scene\Play\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\Player\State\PlayerMoveState.h">
+      <Filter>ソース ファイル\Scene\Play\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\Player\State\PlayerWaitState.h">
+      <Filter>ソース ファイル\Scene\Play\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\Player\State\PlayerShotChainState .h">
+      <Filter>ソース ファイル\Scene\Play\Player\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

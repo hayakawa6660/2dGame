@@ -6,7 +6,8 @@
 #include "Source/System/RenderManager/Shader/Shader.h"
 
 Player::Player(SceneBase * _scene) :
-	GameObject(_scene)
+	GameObject(_scene),
+	m_matrix(MGetIdent())
 {
 	CommonObjects* p = CommonObjects::GetInstance();
 	m_shader = p->FindGameObject<Shader>("Shader");

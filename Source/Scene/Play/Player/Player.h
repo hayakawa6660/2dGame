@@ -22,4 +22,5 @@ private:
 	Model_Info m_model;
 	//検索時間削減のコピーポインタ
 	Shader * m_shader;
+	MATRIX m_matrix;
 };
