@@ -1,5 +1,8 @@
 #pragma once
-class PlayerShotChainState {
+#include "Library/GameObject/GameObject.h"
+
+class PlayerShotChainState : public GameObject 
+{
 public:
 	PlayerShotChainState();
 	~PlayerShotChainState();

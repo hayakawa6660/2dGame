@@ -7,3 +7,7 @@ PlayerMoveState::PlayerMoveState()
 PlayerMoveState::~PlayerMoveState()
 {
 }
+
+void PlayerMoveState::Update()
+{
+}
