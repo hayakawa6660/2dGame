@@ -50,8 +50,8 @@ TitleScene::TitleScene() :
 TitleScene::~TitleScene()
 {
 	Debug::ListAllClear();
-	CompressManager * p = CommonObjects::GetInstance()->FindGameObject<CompressManager>("SceneCompress");
-	p->AllDeleteDirectory();
+	//CompressManager * p = CommonObjects::GetInstance()->FindGameObject<CompressManager>("SceneCompress");
+	//p->AllDeleteDirectory();
 }
 
 void TitleScene::Update()

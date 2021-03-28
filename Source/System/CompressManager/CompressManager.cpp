@@ -8,11 +8,32 @@ CompressManager::CompressManager(GameObject * _scene) :
 	GameObject(nullptr)
 {
 	GetCurrentDirectory(256, m_currentDirectory);
+
+	struct stat st;
+	if (stat("data\\Resource", &st) == 0)
+	{
+		std::string outPath = m_currentDirectory;
+		outPath += "\\data\\Resource";
+		DeleteDirectory(outPath.c_str());
+	}
+
+	std::string outPath = m_currentDirectory;
+	outPath += "\\data\\Resource";
+	wchar_t outUniPath[255];
+	CharToWchart(outPath.c_str(), outUniPath, 255);
+
+	if (_mkdir(outPath.c_str()) != 0)
+		MessageBox(NULL, TEXT("展開先のフォルダの作成に失敗しました。\n既にフォルダが存在するか、使用できない文字が存在する可能性があります。"),
+			TEXT("OK"), MB_OK);
 }
 
 CompressManager::~CompressManager()
 {
 	AllDeleteDirectory();
+
+	std::string outPath = m_currentDirectory;
+	outPath += "\\data\\Resource";
+	DeleteDirectory(outPath.c_str());
 }
 
 bool CompressManager::Unzip(IShellDispatch *_pShellDispatch, WCHAR* _lpszZipPath, WCHAR* _lpszOutPath)
@@ -97,6 +118,7 @@ void CompressManager::AllDeleteDirectory()
 	{
 		DeleteDirectory(it.first.c_str());
 	}
+
 	m_outFilePath.clear();
 }
 
@@ -171,7 +193,7 @@ bool CompressManager::UnCompress(const char *_zipPath, const char *_outPath)
 	wchar_t zipUniPath[255];	//unicode変換後のZipFilePath
 	CharToWchart(zipPath.c_str(), zipUniPath, 255);
 	//ZipFileの展開場所をunicodeで求める
-	std::string outPath = utterlyPath + _outPath;
+	std::string outPath = utterlyPath + "data\\Resource\\" + _outPath;
 	wchar_t outUniPath[255];
 	m_outFilePath.emplace(outPath, false);	//削除用にFilePathを保存 : 数値はロードが完了したか
 	CharToWchart(outPath.c_str(), outUniPath, 255);

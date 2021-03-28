@@ -12,8 +12,8 @@ Player::Player(SceneBase * _scene) :
 	CommonObjects* p = CommonObjects::GetInstance();
 	m_shader = p->FindGameObject<Shader>("Shader");
 	{	//モデルのzip解凍
-		CompressManager * c = p->FindGameObject<CompressManager>("SceneCompress");
-		c->UnCompress("data\\Player.zip", "data\\Player");
+		CompressManager * c = p->FindGameObject<CompressManager>("CompressManager");
+		c->UnCompress("data\\Player.zip", "Player");
 	}
 	ChangeState<PlayerWaitState>();
 }
@@ -29,7 +29,7 @@ Player::~Player()
 void Player::Load()
 {
 	{	//モデルを非同期ロード
-		m_model.fileName = "data\\Player\\gensin_syuzinkou_amb.mv1";
+		m_model.fileName = "data\\Resource\\Player\\gensin_syuzinkou_amb.mv1";
 		ResourceManager* p = CommonObjects::GetInstance()->FindGameObject<ResourceManager>("SceneResource");
 		p->ModelLoad(m_model.fileName);
 	}

@@ -11,34 +11,34 @@ Shader::Shader(SceneBase * _scene) :
 {
 	
 	{
-		CompressManager * c = CommonObjects::GetInstance()->FindGameObject<CompressManager>("SystemCompress");
-		c->UnCompress("data\\Shader.zip", "data\\Shader");
+		CompressManager * c = CommonObjects::GetInstance()->FindGameObject<CompressManager>("CompressManager");
+		c->UnCompress("data\\Shader.zip", "Shader");
 	}
 	//水面用ポリゴンのコンポーネントを生成
 	m_polygon = GameObject::AddComponent<PolygonSetComponent>("PolygonSetComponent");
 		//シェーダーのファイル場所を指定する
 	// ライトの効果を受けず、ディフューズの色のみで判断するシェーダー(フォグ効果あり)
-	m_shader[MESH_TYPE::NMESH_NO_LIGHTING_DIFFONLY_FOG].vertFile = "data\\Shader\\NormalMesh_Nolighting_DiffOnly_Fog\\ShaderPolygon3DTestVS.vso";
-	m_shader[MESH_TYPE::NMESH_NO_LIGHTING_DIFFONLY_FOG].pixlFile = "data\\Shader\\NormalMesh_Nolighting_DiffOnly_Fog\\ShaderPolygon3DTestPS.pso";
+	m_shader[MESH_TYPE::NMESH_NO_LIGHTING_DIFFONLY_FOG].vertFile = "data\\Resource\\Shader\\NormalMesh_Nolighting_DiffOnly_Fog\\ShaderPolygon3DTestVS.vso";
+	m_shader[MESH_TYPE::NMESH_NO_LIGHTING_DIFFONLY_FOG].pixlFile = "data\\Resource\\Shader\\NormalMesh_Nolighting_DiffOnly_Fog\\ShaderPolygon3DTestPS.pso";
 	// ディフューズ、スぺキュラとノーマルマップ付き剛体メッシュ
-	m_shader[MESH_TYPE::NMESH_DIFF_SPEC_NORM].vertFile = "data\\Shader\\NormalMesh_NormalMap_Fog\\ShaderPolygon3DTestVS.vso";
-	m_shader[MESH_TYPE::NMESH_DIFF_SPEC_NORM].pixlFile = "data\\Shader\\NormalMesh_NormalMap_Fog\\ShaderPolygon3DTestPS.pso";
+	m_shader[MESH_TYPE::NMESH_DIFF_SPEC_NORM].vertFile = "data\\Resource\\Shader\\NormalMesh_NormalMap_Fog\\ShaderPolygon3DTestVS.vso";
+	m_shader[MESH_TYPE::NMESH_DIFF_SPEC_NORM].pixlFile = "data\\Resource\\Shader\\NormalMesh_NormalMap_Fog\\ShaderPolygon3DTestPS.pso";
 	// 剛体 : ディフューズ、スぺキュラとノーマルマップシェーダー(フォグ効果あり)、影付き
-	m_shader[MESH_TYPE::NMESH_DIFF_SPEC_NORM_SHADOW].vertFile = "data\\Shader\\NormalMesh_Shadow_Diff_Spec_Normal\\ShaderPolygon3DTestVS.vso";
-	m_shader[MESH_TYPE::NMESH_DIFF_SPEC_NORM_SHADOW].pixlFile = "data\\Shader\\NormalMesh_Shadow_Diff_Spec_Normal\\ShaderPolygon3DTestPS.pso";
+	m_shader[MESH_TYPE::NMESH_DIFF_SPEC_NORM_SHADOW].vertFile = "data\\Resource\\Shader\\NormalMesh_Shadow_Diff_Spec_Normal\\ShaderPolygon3DTestVS.vso";
+	m_shader[MESH_TYPE::NMESH_DIFF_SPEC_NORM_SHADOW].pixlFile = "data\\Resource\\Shader\\NormalMesh_Shadow_Diff_Spec_Normal\\ShaderPolygon3DTestPS.pso";
 	// 剛体 : ディフューズ、スぺキュラ付きトゥーンシェーダー
-	m_shader[MESH_TYPE::NMESH_DIFF_SPEC_TOON].vertFile = "data\\Shader\\NormalMesh_Diff_Spec_Toon\\ShaderPolygon3DTestVS.vso";
-	m_shader[MESH_TYPE::NMESH_DIFF_SPEC_TOON].pixlFile = "data\\Shader\\NormalMesh_Diff_Spec_Toon\\ShaderPolygon3DTestPS.pso";
+	m_shader[MESH_TYPE::NMESH_DIFF_SPEC_TOON].vertFile = "data\\Resource\\Shader\\NormalMesh_Diff_Spec_Toon\\ShaderPolygon3DTestVS.vso";
+	m_shader[MESH_TYPE::NMESH_DIFF_SPEC_TOON].pixlFile = "data\\Resource\\Shader\\NormalMesh_Diff_Spec_Toon\\ShaderPolygon3DTestPS.pso";
 	// 剛体 : 影シェーダーセットアップ用のノーマルマップ付きシェーダー
-	m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NOT_NORMALMAP].vertFile = "data\\Shader\\NormalMesh_ShadowSetUp_NotNormalMap\\ShaderPolygon3DTestVS.vso";
-	m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NOT_NORMALMAP].pixlFile = "data\\Shader\\NormalMesh_ShadowSetUp_NotNormalMap\\ShaderPolygon3DTestPS.pso";
+	m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NOT_NORMALMAP].vertFile = "data\\Resource\\Shader\\NormalMesh_ShadowSetUp_NotNormalMap\\ShaderPolygon3DTestVS.vso";
+	m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NOT_NORMALMAP].pixlFile = "data\\Resource\\Shader\\NormalMesh_ShadowSetUp_NotNormalMap\\ShaderPolygon3DTestPS.pso";
 	//ピクセルシェーダーは↑でやるため必要ないが、何か必要になるかもしれないので入れておく
-	m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NORMALMAP].vertFile = "data\\Shader\\NormalMesh_ShadowSetUp_NormalMap\\ShaderPolygon3DTestVS.vso";
-	m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NORMALMAP].pixlFile = "data\\Shader\\NormalMesh_ShadowSetUp_NormalMap\\ShaderPolygon3DTestPS.pso";
+	m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NORMALMAP].vertFile = "data\\Resource\\Shader\\NormalMesh_ShadowSetUp_NormalMap\\ShaderPolygon3DTestVS.vso";
+	m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NORMALMAP].pixlFile = "data\\Resource\\Shader\\NormalMesh_ShadowSetUp_NormalMap\\ShaderPolygon3DTestPS.pso";
 	
 	// フレネル反射(水)シェーダー
-	m_shader[MESH_TYPE::WATER].vertFile = "data\\Shader\\FresnelReflection\\ShaderPolygon3DTestVS.vso";
-	m_shader[MESH_TYPE::WATER].pixlFile = "data\\Shader\\FresnelReflection\\ShaderPolygon3DTestPS.pso";
+	m_shader[MESH_TYPE::WATER].vertFile = "data\\Resource\\Shader\\FresnelReflection\\ShaderPolygon3DTestVS.vso";
+	m_shader[MESH_TYPE::WATER].pixlFile = "data\\Resource\\Shader\\FresnelReflection\\ShaderPolygon3DTestPS.pso";
 
 	ResourceManager *p = CommonObjects::GetInstance()->FindGameObject<ResourceManager>("SystemResource");
 	for (auto & it : m_shader)
