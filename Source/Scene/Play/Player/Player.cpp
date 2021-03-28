@@ -20,6 +20,10 @@ Player::Player(SceneBase * _scene) :
 
 Player::~Player()
 {
+	if (m_state) {
+		delete m_state;
+		m_state = nullptr;
+	}
 }
 
 void Player::Load()
