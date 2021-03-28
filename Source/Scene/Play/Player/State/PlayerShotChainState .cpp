@@ -1,6 +1,8 @@
 #include "PlayerShotChainState .h"
+#include "PlayerMovement.h"
 
-PlayerShotChainState::PlayerShotChainState()
+PlayerShotChainState::PlayerShotChainState(Player* _player, PlayerMovement* _movement) :
+	PlayerStateBase(_player, _movement)
 {
 }
 

@@ -15,6 +15,7 @@ Player::Player(SceneBase * _scene) :
 		CompressManager * c = p->FindGameObject<CompressManager>("SceneCompress");
 		c->UnCompress("data\\Player.zip", "data\\Player");
 	}
+	ChangeState<PlayerWaitState>();
 }
 
 Player::~Player()
@@ -40,6 +41,9 @@ void Player::Start()
 
 void Player::Update()
 {
+	if (m_state) {
+		m_state->Update();
+	}
 }
 
 void Player::ShadowSetUp()
