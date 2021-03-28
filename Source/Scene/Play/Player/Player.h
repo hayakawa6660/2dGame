@@ -5,6 +5,9 @@
 
 #include "State/PlayerStateBase.h"
 #include "State/PlayerMovement.h"
+#include "State/PlayerShotChainState .h"
+#include "State/PlayerMoveState.h"
+#include "State/PlayerWaitState.h"
 
 #include <assert.h>
 
@@ -15,14 +18,14 @@ public:
 	Player(SceneBase * _scene);
 	~Player();
 	template<class C>
-	C* ChangeState(std::string stateName) {
-		C* nextState = new C;
+	C* ChangeState() {
+		C* nextState = new C(this,&m_movement);
 		if (nextState) {
-			
 			delete m_state;
 			m_state = nullptr;
 			m_state = nextState;
 		}
+		return nextState;
 	}
 private:
 	void Load()override;
@@ -39,4 +42,5 @@ private:
 	Shader * m_shader;
 	MATRIX m_matrix;
 	PlayerStateBase* m_state;
+	PlayerMovement m_movement;
 };
