@@ -16,7 +16,7 @@ PlayScene::PlayScene() :
 	SetFogColor(150, 150, 255);
 	//SetFogColor(255, 50, 50);
 
-	// フォグの開始距離を0、終了距離を2000にする
+	// フォグの開始距離を0、終了距離を1500にする
 	SetFogStartEnd(0.0f, 1500.f);
 
 }

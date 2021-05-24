@@ -58,7 +58,8 @@ Shader::Shader(SceneBase * _scene) :
 	SetCreateGraphColorBitDepth(16);
 	//m_deptHandle = MakeScreen(1024, 1024, FALSE);
 	//m_deptHandle = MakeScreen(2048, 2048, FALSE);
-	m_deptHandle = MakeScreen(4096, 4096, FALSE);
+	//m_deptHandle = MakeScreen(4096, 4096, FALSE);
+	m_deptHandle = MakeScreen(8192, 8192, FALSE);
 	SetDrawValidFloatTypeGraphCreateFlag(FALSE);
 	SetCreateDrawValidGraphChannelNum(4);
 	SetCreateGraphColorBitDepth(32);
