@@ -114,10 +114,6 @@ void Shader::Update()
 		}
 		//ロードが全て終わっているのが確認できたら次からチェックしない
 		m_loadEnd = true;
-		{
-			CompressManager * c = CommonObjects::GetInstance()->FindGameObject<CompressManager>("CompressManager");
-			c->DeleteDirectory("data\\Resource\\Shader");
-		}
 	}
 
 	Debug::DebugPrintf(200, 500, "SystemShader", "Far : %f", m_farParam);
