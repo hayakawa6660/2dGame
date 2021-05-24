@@ -10,6 +10,15 @@ PlayScene::PlayScene() :
 	m_current(nullptr)
 {
 	SetNextState<PlayLoad>("PlayLoad");
+
+	SetFogEnable(TRUE);
+	// フォグの色を白色にする
+	SetFogColor(150, 150, 255);
+	//SetFogColor(255, 50, 50);
+
+	// フォグの開始距離を0、終了距離を2000にする
+	SetFogStartEnd(0.0f, 1500.f);
+
 }
 
 PlayScene::~PlayScene()
