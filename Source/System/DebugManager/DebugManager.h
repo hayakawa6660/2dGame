@@ -39,6 +39,28 @@ public:
 	void SetActive(std::string &_className, bool _active);
 	void Puts(int _x, int _y, std::string _classTag, const char * _format, ...);
 
+	void VSOutputLog(const char* _format, ...);
+	/*
+	{
+#if _DEBUG
+		va_list vlist;
+		va_start(vlist, _format);
+		char ch[256];
+		vsprintf_s(ch, _format, vlist);
+		OutputDebugString(ch);
+		OutputDebugString("\n");
+		va_end(vlist);
+#endif
+	}
+
+	void DebugManager::VSOutputLog(const char* _format, const VECTOR& _vec)
+	{
+#if _DEBUG
+		std::string str = std::string(_format) + "(%f.%f,%f)";
+		VSOutputLog(str.c_str(), _vec.x, _vec.y, _vec.z);
+#endif
+	}
+	*/
 	/// <summary>
 	/// 現在までに作ったデバックのクラスを全て消す
 	/// </summary>
@@ -65,6 +87,12 @@ namespace Debug
 	/// </summary>
 	/// <param name="_classTag">Activeをセットするデバッククラス名</param>
 	void SetActive(std::string _className, bool _active);
+
+	/// <summary>
+	/// ラグ等でデバックのメニューを操作するのが厳しい場合の関数
+	/// </summary>
+	/// <param name="_format">デバッグログを表示する。</param>
+	void VSOutputLog(const char* _format...);
 
 	/// <summary>
 	/// 送った値を全て表示する

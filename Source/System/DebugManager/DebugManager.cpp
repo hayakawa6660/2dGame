@@ -204,6 +204,17 @@ void Debug::SetActive(std::string _className, bool _active)
 	CommonObjects::GetInstance()->FindGameObject<DebugManager>("DebugManager")->SetActive(_className, _active);
 }
 
+void Debug::VSOutputLog(const char *_format ...)
+{
+	va_list vlist;
+	char ch[256];
+	va_start(vlist, _format);
+	vsprintf_s(ch, _format, vlist);
+	OutputDebugString(ch);
+	OutputDebugString("\n");
+	va_end(vlist);
+}
+
 void Debug::DebugPrintf(int _x, int _y, std::string _classTag, const char *_format...)
 {
 	va_list vlist;
