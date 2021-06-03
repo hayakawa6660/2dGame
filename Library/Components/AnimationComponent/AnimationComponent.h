@@ -35,7 +35,8 @@ public:
 	void SetBody(int _model) { m_model = _model; }
 	void SetAnim(std::string _animName, int _handle) { if (!m_animList.count(_animName)) m_animList[_animName] = _handle; }
 	void SetReverce(bool _flag) { m_reverse = _flag; }
-	//これを登録しておくと、逆再生の時に自動でNameの所をPrevPosとして保存してくれる。
+	//これを登録しておくと、アニメーションの移動量を取得できるようになる。
+	//名前はモデルの基点となるボーン(フレーム)の名前
 	void SetRootName(std::string _rootName) { m_rootName = _rootName; }
 	//移動量等、移動や回転に関わるもの
 	/// <summary>
@@ -46,15 +47,14 @@ public:
 	VECTOR GetFramePosition(const std::string &_frameName);
 
 	/// <summary>
-	/// アニメーションの移動量を取得する。
-	/// 前回呼んだGetMoveFrameからの差分が返ってくる(移動量)
+	/// あらかじめセットしたSetRootName()から、アニメーションの移動量を取得する。
+	/// 前回フレームと今回のフレームの差分が返ってくる。(1フレーム分)
 	/// 尚、差分はアニメーションループ時に自動的に0に戻るので
 	/// 原点に戻る様なアニメーションループにも対応している。
-	/// ※ 呼ぶたびに差分が更新されるので1フレーム呼ばなかった場合、2フレーム分の移動量が返る
+	/// 逆再生にも対応しました。
 	/// </summary>
-	/// <param name="_frameName">取得したいポジションのボーン(フレーム名)</param>
 	/// <param name="_fixd">指定ボーン(フレーム)ポジションを0に固定するか</param>
-	VECTOR GetAnimVelocity(const std::string &_frameName, bool _fixed = false);
+	VECTOR GetAnimVelocity(bool _fixed = false);
 	/// <summary>
 	/// 指定フレームをローカルポジション0に設定する。
 	/// 主にrootを固定するために使う
@@ -65,6 +65,8 @@ private:
 	//自分でアニメーションのハンドルを持つのも馬鹿馬鹿しいのでこちらに持っておく
 	std::unordered_map<std::string, int> m_animList;
 	std::string m_rootName;
+	VECTOR	m_animVelocity;
+	VECTOR	m_animPosition;
 	int		m_model;
 	int		m_nextAnim;		//一時的にモデルのハンドルを保管
 	int		m_currentAnim;	//今再生しているアニメーションのハンドル

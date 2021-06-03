@@ -13,7 +13,9 @@ AnimationComponent::AnimationComponent() :
 	m_stop(false),
 	m_blendFlag(false),
 	m_reverse(false),
-	m_prevPos(VGet(0, 0, 0))
+	m_prevPos(VGet(0, 0, 0)),
+	m_animVelocity(VGet(0, 0, 0)),
+	m_animPosition(VGet(0, 0, 0))
 {
 	m_animList.clear();
 }
@@ -39,7 +41,6 @@ void AnimationComponent::Update()
 	{
 		if (m_currentTime + m_playSpeed > m_totalTime) {
 			m_currentTime -= m_totalTime - m_playSpeed;
-			m_prevPos = VGet(0, 0, 0);
 			isLoop = true;
 		}
 		else {
@@ -48,7 +49,7 @@ void AnimationComponent::Update()
 	}
 	else
 	{
-		if (m_currentTime - m_playSpeed < 0.f) {
+		if (m_currentTime - m_playSpeed <= 0.f) {
 			m_currentTime += m_totalTime + m_playSpeed;
 			isLoop = true;
 		}
@@ -59,14 +60,18 @@ void AnimationComponent::Update()
 
 	MV1SetAttachAnimTime(m_model, m_currentIndex, m_currentTime);
 
-	if (isLoop && m_reverse)
+	if (m_rootName.size() != 0)
 	{
-		if (m_rootName.size() != 0)
-		{
-			int frame = MV1SearchFrame(m_model, m_rootName.c_str());
-			VECTOR pos = MV1GetAttachAnimFrameLocalPosition(m_model, m_currentIndex, frame);
-			m_prevPos = pos;
+		int frame = MV1SearchFrame(m_model, m_rootName.c_str());
+		if (isLoop)
+		{	//ループ時かつ逆再生時はここでprevPosを初期化する。
+			m_animPosition = MV1GetAttachAnimFrameLocalPosition(m_model, m_currentIndex, frame);
+			m_prevPos = m_animPosition;
 		}
+		m_animPosition = MV1GetAttachAnimFrameLocalPosition(m_model, m_currentIndex, frame);
+		m_animVelocity = m_animPosition - m_prevPos;
+		m_prevPos = m_animPosition;
+
 	}
 }
 
@@ -134,7 +139,6 @@ float AnimationComponent::GetCurrentAnimTime()
 void AnimationComponent::Play(std::string _animName, const float & _speed)
 {
 	m_nextAnim = m_animList[_animName];
-	//m_nextAnim = _animHandle;
 	m_playSpeed = _speed;
 }
 
@@ -154,15 +158,15 @@ VECTOR AnimationComponent::GetFramePosition(const std::string &_frameName)
 	return MV1GetAttachAnimFrameLocalPosition(m_model, m_currentAnim, root);
 }
 
-VECTOR AnimationComponent::GetAnimVelocity(const std::string & _frameName, bool _fixed)
+VECTOR AnimationComponent::GetAnimVelocity(bool _fixed)
 {
-	int frame = MV1SearchFrame(m_model, _frameName.c_str());
-	VECTOR pos = MV1GetAttachAnimFrameLocalPosition(m_model, m_currentIndex, frame);
-	VECTOR velocity = pos - m_prevPos;
-	m_prevPos = pos;
 	//指定フレームを固定するか
-	if(_fixed)	MV1SetFrameUserLocalMatrix(m_model, frame, MGetIdent());
-	return velocity;
+	if (_fixed)
+	{
+		int frame = MV1SearchFrame(m_model, m_rootName.c_str());
+		MV1SetFrameUserLocalMatrix(m_model, frame, MGetIdent());
+	}
+	return m_animVelocity;
 }
 
 void AnimationComponent::GetFrameZeroVector(const std::string & _frameName)
