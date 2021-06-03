@@ -4,13 +4,9 @@
 #include <list>
 #include <string>
 
-//#include "Library/Components/CollisionComponent/CollisionComponent.h"
 class ComponentBase;
 class SceneBase;
-
-//struct Hit_Info;
 struct Hit_Info;
-//struct CollisionComponent::Hit_Info;
 
 class GameObject
 {

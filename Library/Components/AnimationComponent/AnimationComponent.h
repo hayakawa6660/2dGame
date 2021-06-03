@@ -35,6 +35,8 @@ public:
 	void SetBody(int _model) { m_model = _model; }
 	void SetAnim(std::string _animName, int _handle) { if (!m_animList.count(_animName)) m_animList[_animName] = _handle; }
 	void SetReverce(bool _flag) { m_reverse = _flag; }
+	//これを登録しておくと、逆再生の時に自動でNameの所をPrevPosとして保存してくれる。
+	void SetRootName(std::string _rootName) { m_rootName = _rootName; }
 	//移動量等、移動や回転に関わるもの
 	/// <summary>
 	/// 現在再生しているアニメーションで移動した分のローカルのポジションを取得する。
@@ -52,7 +54,7 @@ public:
 	/// </summary>
 	/// <param name="_frameName">取得したいポジションのボーン(フレーム名)</param>
 	/// <param name="_fixd">指定ボーン(フレーム)ポジションを0に固定するか</param>
-	VECTOR GetMoveFrame(const std::string &_frameName, bool _fixed = false);
+	VECTOR GetAnimVelocity(const std::string &_frameName, bool _fixed = false);
 	/// <summary>
 	/// 指定フレームをローカルポジション0に設定する。
 	/// 主にrootを固定するために使う
@@ -62,6 +64,7 @@ public:
 private:
 	//自分でアニメーションのハンドルを持つのも馬鹿馬鹿しいのでこちらに持っておく
 	std::unordered_map<std::string, int> m_animList;
+	std::string m_rootName;
 	int		m_model;
 	int		m_nextAnim;		//一時的にモデルのハンドルを保管
 	int		m_currentAnim;	//今再生しているアニメーションのハンドル

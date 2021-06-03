@@ -5,12 +5,14 @@
 #include "Source/System/ResourceManager/ResourceManager.h"
 
 EnemyManager::EnemyManager(SceneBase * _scene) :
-	GameObject(_scene)
+	GameObject(_scene),
+	m_hogeTime(120)
 {
 	CommonObjects* p = CommonObjects::GetInstance();
 	m_shader = p->FindGameObject<Shader>("Shader");
 
 	m_anim = GameObject::AddComponent<AnimationComponent>("TestAnim");
+	GameObject::SetScale(VGet(0.01, 0.01, 0.01));
 	/*
 	{
 		CompressManager * c = CommonObjects::GetInstance()->FindGameObject<CompressManager>("SceneCompress");
@@ -43,29 +45,45 @@ void EnemyManager::Start()
 	ResourceManager* p = CommonObjects::GetInstance()->FindGameObject<ResourceManager>("SceneResource");
 	m_testModel.handle = MV1DuplicateModel(p->GetHandle(m_testModel.fileName));
 	m_anim->SetBody(m_testModel.handle);
-	/*
-	m_anim->SetAnim("Run", p->GetHandle("data\\Test\\player_001.mv1"));
-	m_anim->SetBlendFlag(true);
-	m_anim->Play("Run");
-	*/
 	m_anim->SetAnim("Run", p->GetHandle("data\\Test\\Anim_Run.mv1"));
-	m_anim->SetBlendFlag(true);
-	m_anim->Play("Run");
-
+	//m_anim->SetBlendFlag(true);
+	m_anim->Play("Run", 0.5f);
+	m_anim->SetReverce(true);
+	m_anim->SetRootName("root");
 }
 
 void EnemyManager::Update()
 {
 	GameObject::Update();
+
+	if (--m_hogeTime <= 0)
+	{
+		m_hogeTime = GetRand(120) + 60;
+		//m_anim->SetPlaySpeed(GetRand(10) * 0.1);
+	}
+	VECTOR rot = GameObject::GetRotation();
+	rot.y += 0.03f;
+	VECTOR velocity = m_anim->GetAnimVelocity("root", true);
+	MATRIX mScl = MGetScale(GameObject::GetScale());
+	MATRIX mRotY = mScl * MGetRotY(rot.y);
+	VECTOR v = VTransform(velocity, mRotY);
+	//ÉçÅ[ÉJÉãÇÕé≤Ç™ãtÇ»ÇÃÇ≈-=
+	VECTOR pos = GameObject::GetPosition();
+	pos += v;
+	pos.y = 0.f;
+	GameObject::SetRotation(rot);
+	GameObject::SetPosition(pos);
 }
 
 void EnemyManager::Draw()
 {
-	MV1SetScale(m_testModel.handle, VGet(0.01, 0.01, 0.01));
-	MV1SetPosition(m_testModel.handle, VGet(0, 0, 3));
-	static float rotY = 0.f;
-	rotY += 0.03f;
-	MV1SetRotationXYZ(m_testModel.handle, VGet(0, rotY, 0));
+	MATRIX mScl = MGetScale(VGet(0.01, 0.01, 0.01));
+	MATRIX mr = mScl * MGetRotY(GameObject::GetRotation().y);
+	MATRIX mt = MGetTranslate(GameObject::GetPosition());
+	MATRIX m = MMult(mr, mt);
+	MV1SetMatrix(m_testModel.handle, m);
+
+
 
 	int triListNum = MV1GetTriangleListNum(m_testModel.handle);
 	for (int i = 0; i < triListNum; i++)

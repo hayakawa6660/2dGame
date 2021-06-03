@@ -34,11 +34,13 @@ void AnimationComponent::Update()
 	else
 		NormalUpdate();
 
+	bool isLoop = false;
 	if (!m_reverse)
 	{
 		if (m_currentTime + m_playSpeed > m_totalTime) {
 			m_currentTime -= m_totalTime - m_playSpeed;
 			m_prevPos = VGet(0, 0, 0);
+			isLoop = true;
 		}
 		else {
 			m_currentTime += m_playSpeed;
@@ -48,7 +50,7 @@ void AnimationComponent::Update()
 	{
 		if (m_currentTime - m_playSpeed < 0.f) {
 			m_currentTime += m_totalTime + m_playSpeed;
-			m_prevPos = VGet(0, 0, 0);
+			isLoop = true;
 		}
 		else {
 			m_currentTime -= m_playSpeed;
@@ -56,6 +58,16 @@ void AnimationComponent::Update()
 	}
 
 	MV1SetAttachAnimTime(m_model, m_currentIndex, m_currentTime);
+
+	if (isLoop && m_reverse)
+	{
+		if (m_rootName.size() != 0)
+		{
+			int frame = MV1SearchFrame(m_model, m_rootName.c_str());
+			VECTOR pos = MV1GetAttachAnimFrameLocalPosition(m_model, m_currentIndex, frame);
+			m_prevPos = pos;
+		}
+	}
 }
 
 void AnimationComponent::NormalUpdate()
@@ -142,10 +154,10 @@ VECTOR AnimationComponent::GetFramePosition(const std::string &_frameName)
 	return MV1GetAttachAnimFrameLocalPosition(m_model, m_currentAnim, root);
 }
 
-VECTOR AnimationComponent::GetMoveFrame(const std::string & _frameName, bool _fixed)
+VECTOR AnimationComponent::GetAnimVelocity(const std::string & _frameName, bool _fixed)
 {
 	int frame = MV1SearchFrame(m_model, _frameName.c_str());
-	VECTOR pos = MV1GetAttachAnimFrameLocalPosition(m_model, m_currentAnim, frame);
+	VECTOR pos = MV1GetAttachAnimFrameLocalPosition(m_model, m_currentIndex, frame);
 	VECTOR velocity = pos - m_prevPos;
 	m_prevPos = pos;
 	//Žw’èƒtƒŒ[ƒ€‚ðŒÅ’è‚·‚é‚©

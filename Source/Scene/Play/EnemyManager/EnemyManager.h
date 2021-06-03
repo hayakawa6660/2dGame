@@ -21,4 +21,6 @@ private:
 	//検索時間削減のコピーポインタ
 	Shader * m_shader;
 	AnimationComponent* m_anim;
+
+	int m_hogeTime;
 };
