@@ -2,6 +2,8 @@
 
 #include "../ComponentBase.h"
 
+#include <unordered_map>
+
 //アニメーションがあるものは自身のクラスの下にこのクラスを継承
 //して使う
 class AnimationComponent : public ComponentBase
@@ -10,7 +12,7 @@ public:
 	AnimationComponent();
 	~AnimationComponent();
 private:
-	void Start()override{}
+	void Start()override {}
 	void Update()override;
 	void NormalUpdate();
 
@@ -25,12 +27,13 @@ public:
 	float GetTotalTime();
 	float GetCurrentAnimTime();
 
-	void Play(const int& _animHandle, const float& _speed = 0.5f);
+	void Play(std::string _animName, const float& _speed = 0.5f);
 	void SetBlendFlag(bool _flag) { m_blendFlag = _flag; }
 	void SetPlaySpeed(const float& _speed);
 	void SetBlendSpeed(const float& _speed);
 	void Stop(bool _stop) { m_stop = _stop; }
 	void SetBody(int _model) { m_model = _model; }
+	void SetAnim(std::string _animName, int _handle) { if (!m_animList.count(_animName)) m_animList[_animName] = _handle; }
 	void SetReverce(bool _flag) { m_reverse = _flag; }
 	//移動量等、移動や回転に関わるもの
 	/// <summary>
@@ -57,6 +60,8 @@ public:
 	/// <param name="_frameName">取得したいポジションのボーン(フレーム名)</param>
 	void GetFrameZeroVector(const std::string &_frameName);
 private:
+	//自分でアニメーションのハンドルを持つのも馬鹿馬鹿しいのでこちらに持っておく
+	std::unordered_map<std::string, int> m_animList;
 	int		m_model;
 	int		m_nextAnim;		//一時的にモデルのハンドルを保管
 	int		m_currentAnim;	//今再生しているアニメーションのハンドル

@@ -15,6 +15,7 @@ AnimationComponent::AnimationComponent() :
 	m_reverse(false),
 	m_prevPos(VGet(0, 0, 0))
 {
+	m_animList.clear();
 }
 
 AnimationComponent::~AnimationComponent()
@@ -118,9 +119,10 @@ float AnimationComponent::GetCurrentAnimTime()
 	return m_currentTime;
 }
 
-void AnimationComponent::Play(const int & _animHandle, const float & _speed)
+void AnimationComponent::Play(std::string _animName, const float & _speed)
 {
-	m_nextAnim = _animHandle;
+	m_nextAnim = m_animList[_animName];
+	//m_nextAnim = _animHandle;
 	m_playSpeed = _speed;
 }
 
@@ -146,6 +148,7 @@ VECTOR AnimationComponent::GetMoveFrame(const std::string & _frameName, bool _fi
 	VECTOR pos = MV1GetAttachAnimFrameLocalPosition(m_model, m_currentAnim, frame);
 	VECTOR velocity = pos - m_prevPos;
 	m_prevPos = pos;
+	//éwíËÉtÉåÅ[ÉÄÇå≈íËÇ∑ÇÈÇ©
 	if(_fixed)	MV1SetFrameUserLocalMatrix(m_model, frame, MGetIdent());
 	return velocity;
 }

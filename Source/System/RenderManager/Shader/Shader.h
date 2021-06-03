@@ -16,12 +16,13 @@ public:
 	{
 		NO_SHADER = -1,						// シェーダーを使わない(外す)
 		NMESH_NO_LIGHTING_DIFFONLY_FOG,		// 剛体 : ライトの効果を受けず、ディフューズの色のみで判断するシェーダー(フォグ効果あり)
-		//NMESH_DIFFUSE_ONLY,				// ディフューズテクスチャの色のみ(反射色はマテリアルの色を参照)
-		//SKIN4_DIFFUSE_ONLY,				// スキン1_4 : ディフューズテクスチャの色のみ(反射色はマテリアルの色を参照)
+		NMESH_DIFFUSE_ONLY,					// 剛体 : ディフューズテクスチャの色のみ(反射色はマテリアルの色を参照)
+		SKIN4_DIFFUSE_ONLY,					// スキン1_4 :		//
+		SKIN8_DIFFUSE_ONLY,					// スキン5_8 :		//
 		NMESH_DIFF_SPEC_NORM,				// 剛体 : ディフューズ、スぺキュラとノーマルマップシェーダー(フォグ効果あり)
 		NMESH_DIFF_SPEC_NORM_SHADOW,		// 剛体 : ディフューズ、スぺキュラとノーマルマップシェーダー(フォグ効果あり)、影付き
 
-		//SKIN4_DIFF_SPEC_NORM,				// スキン1_4 : ディフューズ、スぺキュラとノーマルマップシェーダー
+		SKIN4_DIFF_SPEC_NORM,				// スキン1_4 : ディフューズ、スぺキュラとノーマルマップシェーダー
 		NMESH_DIFF_SPEC_TOON,				// 剛体 : ディフューズ、スぺキュラ付きトゥーンシェーダー
 		NMESH_SHADOW_SETUP_NOT_NORMALMAP,	// 剛体 : 影シェーダーセットアップ用のノーマルマップ付きシェーダー
 		NMESH_SHADOW_SETUP_NORMALMAP,		// 剛体 : 影シェーダーセットアップ用のノーマルマップ無しシェーダー

@@ -16,7 +16,10 @@ Shader::Shader(SceneBase * _scene) :
 	}
 	//水面用ポリゴンのコンポーネントを生成
 	m_polygon = GameObject::AddComponent<PolygonSetComponent>("PolygonSetComponent");
-		//シェーダーのファイル場所を指定する
+	/****************
+	剛体
+	****************/
+	//シェーダーのファイル場所を指定する
 	// ライトの効果を受けず、ディフューズの色のみで判断するシェーダー(フォグ効果あり)
 	m_shader[MESH_TYPE::NMESH_NO_LIGHTING_DIFFONLY_FOG].vertFile = "data\\Resource\\Shader\\NormalMesh_Nolighting_DiffOnly_Fog\\ShaderPolygon3DTestVS.vso";
 	m_shader[MESH_TYPE::NMESH_NO_LIGHTING_DIFFONLY_FOG].pixlFile = "data\\Resource\\Shader\\NormalMesh_Nolighting_DiffOnly_Fog\\ShaderPolygon3DTestPS.pso";
@@ -35,7 +38,19 @@ Shader::Shader(SceneBase * _scene) :
 	//ピクセルシェーダーは↑でやるため必要ないが、何か必要になるかもしれないので入れておく
 	m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NORMALMAP].vertFile = "data\\Resource\\Shader\\NormalMesh_ShadowSetUp_NormalMap\\ShaderPolygon3DTestVS.vso";
 	m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NORMALMAP].pixlFile = "data\\Resource\\Shader\\NormalMesh_ShadowSetUp_NormalMap\\ShaderPolygon3DTestPS.pso";
-	
+	/****************
+	スキニング
+	****************/
+	//スキニングメッシュ1-4 : ディフューズテクスチャのみ(フォグ効果も無し)
+	m_shader[MESH_TYPE::SKIN4_DIFFUSE_ONLY].vertFile = "data\\Resource\\Shader\\SkinMesh1-4_DiffuseOnly\\ShaderPolygon3DTestVS.vso";
+	m_shader[MESH_TYPE::SKIN4_DIFFUSE_ONLY].pixlFile = "data\\Resource\\Shader\\SkinMesh1-4_DiffuseOnly\\ShaderPolygon3DTestPS.pso";
+	//スキニングメッシュ5-8 : ディフューズテクスチャのみ(フォグ効果も無し)
+	m_shader[MESH_TYPE::SKIN8_DIFFUSE_ONLY].vertFile = "data\\Resource\\Shader\\SkinMesh5-8_DiffuseOnly\\ShaderPolygon3DTestVS.vso";
+	m_shader[MESH_TYPE::SKIN8_DIFFUSE_ONLY].pixlFile = "data\\Resource\\Shader\\SkinMesh5-8_DiffuseOnly\\ShaderPolygon3DTestPS.pso";
+	//スキニングメッシュ : ディフューズ、スぺキュラ、ノーマル
+	m_shader[MESH_TYPE::SKIN4_DIFF_SPEC_NORM].vertFile = "data\\Resource\\Shader\\SkinMesh1-4_NormalMap\\ShaderPolygon3DTestVS.vso";
+	m_shader[MESH_TYPE::SKIN4_DIFF_SPEC_NORM].pixlFile = "data\\Resource\\Shader\\SkinMesh1-4_NormalMap\\ShaderPolygon3DTestPS.pso";
+
 	// フレネル反射(水)シェーダー
 	m_shader[MESH_TYPE::WATER].vertFile = "data\\Resource\\Shader\\FresnelReflection\\ShaderPolygon3DTestVS.vso";
 	m_shader[MESH_TYPE::WATER].pixlFile = "data\\Resource\\Shader\\FresnelReflection\\ShaderPolygon3DTestPS.pso";
@@ -299,7 +314,6 @@ void Shader::SetMeshTypeShader(MESH_TYPE _type)
 		//深度画像をピクセルシェーダーにセット
 		SetUseTextureToShader(4, m_deptHandle);
 		SetUseVertexShader(m_shader[_type].vertex);
-
 		break;
 	default:	//その他特に設定する必要のないシェーダー
 		MV1SetUseOrigShader(TRUE);

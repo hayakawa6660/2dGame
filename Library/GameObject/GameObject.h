@@ -109,7 +109,7 @@ public:
 	/// </summary>
 	/// <param name="_tag">ƒ^ƒO</param>
 	/// <returns>“¯‚¶‚Å‚ ‚ê‚Îtrue</returns>
-	bool IsTag(std::string _tag) const { return m_tag == _tag; }
+	bool IsTag(std::string _tag) const { return std::hash<std::string>()(m_tag) == std::hash<std::string>()(_tag); }
 
 
 	/// <summary>

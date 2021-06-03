@@ -64,7 +64,8 @@ void GameObject::SetPriority(ComponentBase * _com, std::string _tag, int _priori
 {
 	for (auto& node : m_componentList)
 	{
-		if (node.component == _com && node.component->GetTag() == _tag)
+		//‚‘¬‰»‚Ìˆ×‚Éstd::hash‚ğg‚¤
+		if (node.component == _com && std::hash<std::string>()(node.component->GetTag()) == std::hash<std::string>()(_tag))
 		{
 			node.priority = _priority;
 			m_sort = true;
@@ -84,7 +85,7 @@ ComponentBase * GameObject::SearchComponent(std::string tag) const
 {
 	for (auto& it : m_componentList)
 	{
-		if (it.component->GetTag() == tag)
+		if (std::hash<std::string>()(it.component->GetTag()) == std::hash<std::string>()(tag))
 			return it.component;
 	}
 	return nullptr;
