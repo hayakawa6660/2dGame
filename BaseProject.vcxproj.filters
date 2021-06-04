@@ -143,6 +143,12 @@
     <Filter Include="ソース ファイル\Scene\Play\Player\State">
       <UniqueIdentifier>{fce19f54-db1c-4939-9b4d-85af1f7a9f5d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Library\Components\KeyboardComponent">
+      <UniqueIdentifier>{4c51fbb3-f30a-474c-bddd-0fe7c5ad71ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\System\KeyboardManager">
+      <UniqueIdentifier>{b1c296f4-5b78-457a-9b48-6a7f34abf991}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Library\app.cpp">
@@ -285,6 +291,12 @@
     </ClCompile>
     <ClCompile Include="Source\Scene\Play\Player\State\PlayerWaitState.cpp">
       <Filter>ソース ファイル\Scene\Play\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Components\KeyboardComponent\KeyboardComponent.cpp">
+      <Filter>ソース ファイル\Library\Components\KeyboardComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\System\KeyboardManager\KeyboardManager.cpp">
+      <Filter>ソース ファイル\System\KeyboardManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -452,6 +464,12 @@
     </ClInclude>
     <ClInclude Include="Source\Scene\Play\Player\State\PlayerStateBase.h">
       <Filter>ソース ファイル\Scene\Play\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Components\KeyboardComponent\KeyboardComponent.h">
+      <Filter>ソース ファイル\Library\Components\KeyboardComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\System\KeyboardManager\KeyboardManager.h">
+      <Filter>ソース ファイル\System\KeyboardManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

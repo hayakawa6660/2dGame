@@ -15,6 +15,7 @@
 #include "Source/System/RenderManager/RenderManager.h"
 #include "Source/System/ThreadManager/ThreadManager.h"
 #include "Source/System/CompressManager/CompressManager.h"
+#include "Source/System/KeyboardManager/KeyboardManager.h"
 
 BootScene::BootScene()
 {
@@ -24,6 +25,7 @@ BootScene::BootScene()
 	p->CreateGameObject<ResourceManager>("SceneResource");
 	p->CreateGameObject<ResourceManager>("SystemResource");
 	p->CreateGameObject<ControllerManager>("ControllerManager");
+	p->CreateGameObject<KeyboardManager>("KeyboardManager");
 	p->CreateGameObject<DebugManager>("DebugManager");
 	p->CreateGameObject<LoadManager>("LoadManager");
 	p->CreateGameObject<CsvManager>("CsvManager");
