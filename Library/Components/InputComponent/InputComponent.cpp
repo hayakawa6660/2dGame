@@ -2,6 +2,52 @@
 #include <DxLib.h>
 
 InputComponent::InputComponent() :
+	m_input(0),
+	m_lastInput(true)
+{
+	m_key.clear();
+}
+
+InputComponent::~InputComponent()
+{
+	m_key.clear();
+}
+
+void InputComponent::Update()
+{
+	m_lastInput = m_input;
+	m_input = 0;
+
+	int a = 0;
+	for (auto &it : m_key)
+	{
+		if (CheckHitKey(it.second.keyType) != 0)
+			m_input |= 1 << a;	//‚¿‚å‚Á‚Æ‹­ˆø‚É“ü—Í’l‚ðŒˆ‚ß‚éB
+		a++;
+	}
+}
+
+void InputComponent::SetKeyBind(std::string & _keyName, int _key)
+{
+	m_key[_keyName].keyType = _key;
+	m_key[_keyName].input = 1 << (m_key.size() - 1);	//0‚ª‚ ‚é‚½‚ß-1
+}
+
+bool InputComponent::IsTrigger(std::string & _keyName)
+{
+	if (!m_key.count(_keyName)) return false;
+	return (((~m_lastInput & m_input) & m_key[_keyName].input) != 0);
+}
+
+bool InputComponent::IsInput(std::string & _keyName)
+{
+	if (!m_key.count(_keyName)) return false;
+	return ((m_input & (int)m_key[_keyName].input) != 0);
+}
+
+/*
+#if 0
+InputComponent::InputComponent() :
 	m_xLastInput(true),
 	m_xInput(0),
 	m_controllerNum(1),
@@ -137,3 +183,5 @@ bool InputComponent::GetKeyInputType(KEY_ID _type)
 {
 	return ((m_keyInput & (int)_type) != 0);
 }
+#endif
+*/

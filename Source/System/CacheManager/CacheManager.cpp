@@ -23,6 +23,7 @@ void CacheManager::Start()
 void CacheManager::Update()
 {
 #if DEBUG
+	/*
 	if (CommonObjects::GetInstance()->FindGameObject<ControllerManager>("ControllerManager")
 		->GetKeyInput(InputComponent::KEY_ID::SHIFT))
 		m_cache.clear();
@@ -37,6 +38,7 @@ void CacheManager::Update()
 		Debug::DebugPrintf(150, 20 + (i * 40), "Cache", str.c_str());
 		++i;
 	}
+	*/
 #endif
 }
 

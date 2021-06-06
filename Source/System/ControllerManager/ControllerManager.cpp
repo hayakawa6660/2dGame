@@ -1,3 +1,4 @@
+/*
 #include "ControllerManager.h"
 
 #include <math.h>
@@ -128,3 +129,4 @@ float ControllerManager::GetLeftStickAngle() const
 	}
 	return 0.0f;
 }
+*/

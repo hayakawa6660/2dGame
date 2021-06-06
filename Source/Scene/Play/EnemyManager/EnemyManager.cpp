@@ -3,7 +3,7 @@
 #include "Library/Common/commonObjects.h"
 #include "Source/System/CompressManager/CompressManager.h"
 #include "Source/System/ResourceManager/ResourceManager.h"
-#include "Source/System/KeyboardManager/KeyboardManager.h"
+//#include "Source/System/KeyboardManager/KeyboardManager.h"
 
 EnemyManager::EnemyManager(SceneBase * _scene) :
 	GameObject(_scene),
@@ -14,9 +14,10 @@ EnemyManager::EnemyManager(SceneBase * _scene) :
 
 	m_anim = GameObject::AddComponent<AnimationComponent>("TestAnim");
 	GameObject::SetScale(VGet(0.01, 0.01, 0.01));
-
+	/*
 	KeyboardManager * key = p->FindGameObject<KeyboardManager>("KeyboardManager");
 	key->SetKeyBind("Hoge", KEY_INPUT_LSHIFT);
+	*/
 }
 
 EnemyManager::~EnemyManager()
@@ -51,6 +52,7 @@ void EnemyManager::Update()
 {
 	GameObject::Update();
 
+	/*
 	{
 		CommonObjects* p = CommonObjects::GetInstance();
 		KeyboardManager * key = p->FindGameObject<KeyboardManager>("KeyboardManager");
@@ -59,6 +61,7 @@ void EnemyManager::Update()
 		if (key->IsTrigger("Hoge"))
 			int a = 0;
 	}
+	*/
 
 	if (--m_hogeTime <= 0)
 	{

@@ -1,7 +1,7 @@
 #pragma once
 
+/*
 #include "Library/GameObject/GameObject.h"
-
 #include "Library/Components/InputComponent/InputComponent.h"
 
 class ControllerManager : public GameObject
@@ -47,3 +47,4 @@ public:
 	bool GetXOnceInput(InputComponent::XCTR_ID _type);
 	bool GetXInputType(InputComponent::XCTR_ID _type);
 };
+*/

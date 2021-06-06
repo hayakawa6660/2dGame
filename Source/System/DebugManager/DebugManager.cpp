@@ -29,7 +29,7 @@ DebugManager::~DebugManager()
 void DebugManager::Update()
 {
 	DestroyUpdate();
-	
+	/*
 	ControllerManager * p = CommonObjects::GetInstance()->FindGameObject<ControllerManager>("ControllerManager");
 	if (p->DebugKeyInput())
 		m_isDebugMode = !m_isDebugMode;
@@ -38,6 +38,7 @@ void DebugManager::Update()
 
 	ResetUpdate();
 	SelectUpdate();
+	*/
 }
 
 void DebugManager::Draw()
@@ -70,6 +71,7 @@ void DebugManager::Draw()
 
 void DebugManager::SelectUpdate()
 {
+	/*
 	ControllerManager * p = CommonObjects::GetInstance()->FindGameObject<ControllerManager>("ControllerManager");
 	//ã‰º‘I‘ð
 	if (p->GetKeyOnceInput(InputComponent::KEY_ID::UP) ||
@@ -112,6 +114,7 @@ void DebugManager::SelectUpdate()
 			}
 		}
 	}
+	*/
 }
 
 void DebugManager::ResetUpdate()

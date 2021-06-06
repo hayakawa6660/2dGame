@@ -2,16 +2,16 @@
 
 #include "Library/GameObject/GameObject.h"
 
-class KeyboardComponent;
-class KeyboardManager : public GameObject
+class InputComponent;
+class InputManager : public GameObject
 {
 public:
-	KeyboardManager(SceneBase * _scene);
-	~KeyboardManager();
+	InputManager(SceneBase * _scene);
+	~InputManager();
 private:
 	void Update()override;
 private:
-	KeyboardComponent* m_keyboard;
+	InputComponent* m_inputComponent;
 public:
 	//キーを設定する。
 	//現在はこれを設定しないとキーの取得が出来ない

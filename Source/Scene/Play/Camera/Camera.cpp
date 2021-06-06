@@ -5,7 +5,7 @@
 //System
 #include "Library/Common/commonObjects.h"
 #include "Source/System/RenderManager/Shader/Shader.h"
-#include "Source/System/ControllerManager/ControllerManager.h"
+//#include "Source/System/ControllerManager/ControllerManager.h"
 #include "Source/System/CacheManager/CacheManager.h"
 #include "Source/System/RenderManager/Shader/Shader.h"
 
@@ -71,6 +71,7 @@ void Camera::Update()
 
 void Camera::RotateUpdate(VECTOR &_rot)
 {
+	/*
 	if (m_controller->GetKeyInput(InputComponent::KEY_ID::RIGHT))
 	{
 		_rot.y += 0.1f;
@@ -92,6 +93,7 @@ void Camera::RotateUpdate(VECTOR &_rot)
 		_rot.x = 1.f;
 	else if (_rot.x <= -1.f)
 		_rot.x = -1.f;
+	*/
 }
 
 void Camera::SetCameraPosAndDir()

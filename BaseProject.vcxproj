@@ -24,7 +24,6 @@
     <ClCompile Include="Library\Components\AnimationComponent\AnimationComponent.cpp" />
     <ClCompile Include="Library\Components\CollisionComponent\CollisionComponent.cpp" />
     <ClCompile Include="Library\Components\InputComponent\InputComponent.cpp" />
-    <ClCompile Include="Library\Components\KeyboardComponent\KeyboardComponent.cpp" />
     <ClCompile Include="Library\Components\PolygonSetComponent\PolygonSetComponent.cpp" />
     <ClCompile Include="Library\GameObject\GameObject.cpp" />
     <ClCompile Include="Library\GameObject\GameObjectManager.cpp" />
@@ -58,7 +57,7 @@
     <ClCompile Include="Source\System\EffectManager\EffectManager.cpp" />
     <ClCompile Include="Source\System\EffectManager\FireFlowar\FireFlowar.cpp" />
     <ClCompile Include="Source\System\FadeManager\FadeManager.cpp" />
-    <ClCompile Include="Source\System\KeyboardManager\KeyboardManager.cpp" />
+    <ClCompile Include="Source\System\InputManager\InputManager.cpp" />
     <ClCompile Include="Source\System\LoadManager\LoadData\LoadData.cpp" />
     <ClCompile Include="Source\System\LoadManager\LoadDraw\LoadDraw.cpp" />
     <ClCompile Include="Source\System\LoadManager\LoadManager.cpp" />
@@ -76,7 +75,6 @@
     <ClInclude Include="Library\Components\CollisionComponent\CollisionComponent.h" />
     <ClInclude Include="Library\Components\ComponentBase.h" />
     <ClInclude Include="Library\Components\InputComponent\InputComponent.h" />
-    <ClInclude Include="Library\Components\KeyboardComponent\KeyboardComponent.h" />
     <ClInclude Include="Library\Components\PolygonSetComponent\PolygonSetComponent.h" />
     <ClInclude Include="Library\GameObject\GameObject.h" />
     <ClInclude Include="Library\GameObject\GameObjectManager.h" />
@@ -116,7 +114,7 @@
     <ClInclude Include="Source\System\EffectManager\EffectManager.h" />
     <ClInclude Include="Source\System\EffectManager\FireFlowar\FireFlowar.h" />
     <ClInclude Include="Source\System\FadeManager\FadeManager.h" />
-    <ClInclude Include="Source\System\KeyboardManager\KeyboardManager.h" />
+    <ClInclude Include="Source\System\InputManager\InputManager.h" />
     <ClInclude Include="Source\System\LoadManager\LoadData\LoadData.h" />
     <ClInclude Include="Source\System\LoadManager\LoadDraw\LoadDraw.h" />
     <ClInclude Include="Source\System\LoadManager\LoadManager.h" />

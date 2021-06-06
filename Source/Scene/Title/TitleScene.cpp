@@ -7,10 +7,9 @@
 #include "Library/Common/commonObjects.h"
 #include "Source/System/FadeManager/FadeManager.h"
 #include "Source/System/CacheManager/CacheManager.h"
-#include "Source/System/ControllerManager/ControllerManager.h"
+#include "Source/System/InputManager/InputManager.h"
 #include "Source/System/ThreadManager/ThreadManager.h"
 #include "Source/System/ResourceManager/ResourceManager.h"
-#include "Source/System/CompressManager/CompressManager.h"
 //Debug
 #include "Source/System/DebugManager/DebugManager.h"
 #include "Source/System/CompressManager/CompressManager.h"
@@ -80,10 +79,10 @@ void TitleScene::Update()
 	break;
 	case STATE::PLAY:
 		SceneBase::Update();
-		ControllerManager * p = CommonObjects::GetInstance()->FindGameObject<ControllerManager>("ControllerManager");
-		if (p->GetKeyOnceInput(InputComponent::KEY_ID::SPACE))
+		InputManager * p = CommonObjects::GetInstance()->FindGameObject<InputManager>("InputManager");
+		//if (p->GetKeyOnceInput(InputComponent::KEY_ID::SPACE))
+		if(p->IsTrigger("SPACE"))
 			SceneManager::GetInstance()->ChangeScene("PlayScene"); // ‹N“®‚ªI‚í‚Á‚½‚çTitle‚ğ•\¦
-
 		break;
 	}
 
