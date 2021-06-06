@@ -5,15 +5,15 @@
 
 #include <assert.h>
 PlayerMovement::PlayerMovement() :
-	m_input(nullptr), 
+	//m_input(nullptr), 
 	m_movementAxis(0.f),
 	m_movementSpeed(0.0001f),
 	m_movementMaxSpeed(1.f),
 	m_rotateSpeed(0.1f),
 	velocity(VGet(0,0,0))
 {
-	m_input = CommonObjects::GetInstance()->FindGameObject<ControllerManager>("ControllerManager");
-	assert(m_input);
+	//m_input = CommonObjects::GetInstance()->FindGameObject<ControllerManager>("ControllerManager");
+	//assert(m_input);
 }
 
 PlayerMovement::~PlayerMovement()
@@ -35,6 +35,7 @@ void PlayerMovement::SetMovemetSpeed(float _movementSpeed)
 
 void PlayerMovement::VelocityUpdate()
 {
+	/*
 	if (!m_input)
 		return;
 	VECTOR dir = VGet(0, 0, 0);
@@ -53,10 +54,12 @@ void PlayerMovement::VelocityUpdate()
 	}
 	velocity += dir * m_movementSpeed;
 	velocity = VSize(velocity) < m_movementMaxSpeed ? velocity : dir * m_movementMaxSpeed;
+	*/
 }
 
 void PlayerMovement::MoveToKeyAngleUpdate()
 {
+	/*
 	if (!m_input)
 		return;
 	float axis = 0;
@@ -67,5 +70,6 @@ void PlayerMovement::MoveToKeyAngleUpdate()
 		axis -= m_rotateSpeed;
 	}
 	m_movementAxis += axis;
+	*/
 }
 

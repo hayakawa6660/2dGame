@@ -1,7 +1,7 @@
 #pragma once
 #include <MyDxlib.h>
 
-class ControllerManager;
+//class ControllerManager;
 class PlayerMovement {
 public:
 	PlayerMovement();
@@ -23,5 +23,5 @@ private:
 	float m_rotateSpeed;
 	VECTOR velocity;
 	MATRIX* matrix;
-	ControllerManager* m_input;
+	//ControllerManager* m_input;
 };
