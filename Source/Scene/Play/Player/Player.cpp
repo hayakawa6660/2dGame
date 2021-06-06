@@ -7,7 +7,8 @@
 
 Player::Player(SceneBase * _scene) :
 	GameObject(_scene),
-	m_matrix(MGetIdent())
+	m_matrix(MGetIdent()),
+	m_position()
 {
 	CommonObjects* p = CommonObjects::GetInstance();
 	m_shader = p->FindGameObject<Shader>("Shader");
@@ -16,6 +17,7 @@ Player::Player(SceneBase * _scene) :
 		c->UnCompress("data\\Player.zip", "Player");
 	}
 	ChangeState<PlayerWaitState>();
+	
 }
 
 Player::~Player()
@@ -45,6 +47,9 @@ void Player::Start()
 
 void Player::Update()
 {
+	m_movement.MovementUpdate(&m_matrix);
+	m_position = VGet(m_matrix.m[3][0], m_matrix.m[3][1], m_matrix.m[3][2]);
+	SetPosition(m_position);
 	if (m_state) {
 		m_state->Update();
 	}
@@ -53,6 +58,8 @@ void Player::Update()
 void Player::ShadowSetUp()
 {
 	MV1SetPosition(m_model.handle, VGet(0, 0, 0));
+	m_shader->SetMeshTypeShader(Shader::MESH_TYPE::NMESH_SHADOW_SETUP_NOT_NORMALMAP);
+	MV1DrawModel(m_model.handle);
 }
 
 void Player::DrawSetUp()
@@ -62,6 +69,7 @@ void Player::DrawSetUp()
 
 void Player::Draw()
 {
+	MV1SetMatrix(m_model.handle, m_matrix);
 	m_shader->SetMeshTypeShader(Shader::MESH_TYPE::NMESH_DIFF_SPEC_TOON);
 	MV1DrawModel(m_model.handle);
 	m_shader->SetMeshTypeShader(Shader::MESH_TYPE::NO_SHADER);

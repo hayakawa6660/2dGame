@@ -41,6 +41,7 @@ private:
 	//検索時間削減のコピーポインタ
 	Shader * m_shader;
 	MATRIX m_matrix;
+	VECTOR m_position;
 	PlayerStateBase* m_state;
 	PlayerMovement m_movement;
 };

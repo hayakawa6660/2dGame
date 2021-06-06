@@ -1,16 +1,27 @@
 #pragma once
 #include <MyDxlib.h>
 
-class InputComponent;
+class ControllerManager;
 class PlayerMovement {
 public:
 	PlayerMovement();
 	~PlayerMovement();
-	void UpdateMove(MATRIX* matrix);
+	void MovementUpdate(MATRIX* _matrix);
+	void SetMovemetSpeed(float _movementSpeed);
 private:
-	float GetMoveToKeyAngle();
+
+	void VelocityUpdate();
+	/// <summary>
+	/// デバッグ用
+	/// </summary>
+	/// <returns></returns>
+	void MoveToKeyAngleUpdate();
 	
-	float m_moveAxis;
+	float m_movementSpeed;
+	float m_movementMaxSpeed;
+	float m_movementAxis;
 	float m_rotateSpeed;
-	InputComponent* m_input;
+	VECTOR velocity;
+	MATRIX* matrix;
+	ControllerManager* m_input;
 };
