@@ -43,8 +43,8 @@ BootScene::BootScene()
 	p->SetDrawOrder(debug, 10000);
 
 	InputManager * input = p->CreateGameObject<InputManager>("InputManager");
-	input->SetKeyBind("ESC", KEY_INPUT_ESCAPE);
-	input->SetKeyBind("SPACE", KEY_INPUT_SPACE);
+	input->AddKeyBind("ESC", KEY_INPUT_ESCAPE);
+	input->AddKeyBind("SPACE", KEY_INPUT_SPACE);
 }
 
 BootScene::~BootScene()

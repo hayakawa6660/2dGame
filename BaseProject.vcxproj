@@ -48,7 +48,6 @@
     <ClCompile Include="Source\Scene\Title\TitleScene.cpp" />
     <ClCompile Include="Source\System\CacheManager\CacheManager.cpp" />
     <ClCompile Include="Source\System\CompressManager\CompressManager.cpp" />
-    <ClCompile Include="Source\System\ControllerManager\ControllerManager.cpp" />
     <ClCompile Include="Source\System\CsvManager\CsvData\CsvData.cpp" />
     <ClCompile Include="Source\System\CsvManager\CsvManager.cpp" />
     <ClCompile Include="Source\System\CsvManager\ReadCsv\ReadCsv.cpp" />
@@ -104,7 +103,6 @@
     <ClInclude Include="Source\Scene\Title\TitleScene.h" />
     <ClInclude Include="Source\System\CacheManager\CacheManager.h" />
     <ClInclude Include="Source\System\CompressManager\CompressManager.h" />
-    <ClInclude Include="Source\System\ControllerManager\ControllerManager.h" />
     <ClInclude Include="Source\System\CsvManager\CsvData\CsvData.h" />
     <ClInclude Include="Source\System\CsvManager\CsvManager.h" />
     <ClInclude Include="Source\System\CsvManager\ReadCsv\ReadCsv.h" />

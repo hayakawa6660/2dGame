@@ -21,16 +21,29 @@ void InputComponent::Update()
 	int a = 0;
 	for (auto &it : m_key)
 	{
-		if (CheckHitKey(it.second.keyType) != 0)
-			m_input |= 1 << a;	//ちょっと強引に入力値を決める。
+		InputUpdate(it, a);
 		a++;
 	}
 }
 
-void InputComponent::SetKeyBind(std::string & _keyName, int _key)
+void InputComponent::InputUpdate(std::pair<const std::string, Input_State>& _it, int _num)
 {
-	m_key[_keyName].keyType = _key;
+	for (auto &key : _it.second.keyType)
+		if (CheckHitKey(key) == 0)	return;		//入力されていなかったら
+	m_input |= 1 << _num;	//ちょっと強引に入力値を決める。
+}
+
+void InputComponent::AddKeyBind(std::string & _keyName, int _key)
+{
+	if (m_key.count(_keyName))		return;
+	m_key[_keyName].keyType.emplace_back(_key);
 	m_key[_keyName].input = 1 << (m_key.size() - 1);	//0があるため-1
+}
+
+void InputComponent::AddKey(std::string & _keyName, int _key)
+{
+	if (!m_key.count(_keyName))		return;
+	m_key[_keyName].keyType.emplace_back(_key);
 }
 
 bool InputComponent::IsTrigger(std::string & _keyName)

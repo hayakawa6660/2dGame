@@ -2,6 +2,7 @@
 
 #include "../ComponentBase.h"
 #include <map>
+#include <vector>
 
 /*
 #if 0
@@ -117,7 +118,7 @@ private:
 private:
 	struct Input_State
 	{
-		int keyType;
+		std::vector<int> keyType;
 		int input;
 	};
 	//順序が大事なのでmap
@@ -125,10 +126,13 @@ private:
 	//キーボード
 	int m_input;		//現在入力されているキー情報
 	int m_lastInput;
+private:
+	void InputUpdate(std::pair<const std::string, Input_State>& _it, int _num);
 public:
 	//キーを設定する。
 	//現在はこれを設定しないとキーの取得が出来ない
-	void SetKeyBind(std::string &_keyName, int _key);
+	void AddKeyBind(std::string &_keyName, int _key);
+	void AddKey(std::string &_keyName, int _key);
 	//キーが無ければfalseが返る
 	bool IsTrigger(std::string &_keyName);
 	bool IsInput(std::string &_keyName);

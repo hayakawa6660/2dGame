@@ -17,9 +17,14 @@ void InputManager::Update()
 	GameObject::Update();
 }
 
-void InputManager::SetKeyBind(std::string _keyName, int _key)
+void InputManager::AddKeyBind(std::string _keyName, int _key)
 {
-	m_inputComponent->SetKeyBind(_keyName, _key);
+	m_inputComponent->AddKeyBind(_keyName, _key);
+}
+
+void InputManager::AddKey(std::string _keyName, int _key)
+{
+	m_inputComponent->AddKey(_keyName, _key);
 }
 
 bool InputManager::IsTrigger(std::string _keyName)

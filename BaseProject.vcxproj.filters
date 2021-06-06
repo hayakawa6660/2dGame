@@ -62,9 +62,6 @@
     <Filter Include="ソース ファイル\System\CsvManager\CsvData">
       <UniqueIdentifier>{6b3d5917-c485-45d1-977b-e8fa0a3bc8e6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\System\ControllerManager">
-      <UniqueIdentifier>{c99a205a-15eb-4617-ba67-9917c5d2d870}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\System\EffectManager">
       <UniqueIdentifier>{7f535fd5-b0ad-4758-9ac5-558fe49146e7}</UniqueIdentifier>
     </Filter>
@@ -107,9 +104,6 @@
     <Filter Include="ソース ファイル\Scene\Title\TestCollision">
       <UniqueIdentifier>{30bcb0fb-6278-46b1-bc45-6c838c224014}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\System\CompressManager">
-      <UniqueIdentifier>{5dbbeaae-782c-4d52-9d1b-d6a5d68eac16}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Scene\Play">
       <UniqueIdentifier>{60fdc10e-5208-42b4-a205-37e091f605d8}</UniqueIdentifier>
     </Filter>
@@ -145,6 +139,9 @@
     </Filter>
     <Filter Include="ソース ファイル\System\InputManager">
       <UniqueIdentifier>{cb7d1935-ea8b-4bd9-a1d1-dd624f2a2e01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\System\ComplessManager">
+      <UniqueIdentifier>{c99a205a-15eb-4617-ba67-9917c5d2d870}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -196,9 +193,6 @@
     <ClCompile Include="Source\System\CsvManager\CsvData\CsvData.cpp">
       <Filter>ソース ファイル\System\CsvManager\CsvData</Filter>
     </ClCompile>
-    <ClCompile Include="Source\System\ControllerManager\ControllerManager.cpp">
-      <Filter>ソース ファイル\System\ControllerManager</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Scene\SceneFactory.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
@@ -247,9 +241,6 @@
     <ClCompile Include="Source\Scene\Title\TestCollision\TestCollision.cpp">
       <Filter>ソース ファイル\Scene\Title\TestCollision</Filter>
     </ClCompile>
-    <ClCompile Include="Source\System\CompressManager\CompressManager.cpp">
-      <Filter>ソース ファイル\System\CompressManager</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Scene\Play\PlayScene.cpp">
       <Filter>ソース ファイル\Scene\Play</Filter>
     </ClCompile>
@@ -291,6 +282,9 @@
     </ClCompile>
     <ClCompile Include="Source\System\InputManager\InputManager.cpp">
       <Filter>ソース ファイル\System\InputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\System\CompressManager\CompressManager.cpp">
+      <Filter>ソース ファイル\System\ComplessManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -347,9 +341,6 @@
     </ClInclude>
     <ClInclude Include="Source\System\CsvManager\CsvData\CsvData.h">
       <Filter>ソース ファイル\System\CsvManager\CsvData</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\System\ControllerManager\ControllerManager.h">
-      <Filter>ソース ファイル\System\ControllerManager</Filter>
     </ClInclude>
     <ClInclude Include="Source\Scene\SceneFactory.h">
       <Filter>ソース ファイル\Scene</Filter>
@@ -408,9 +399,6 @@
     <ClInclude Include="Source\Scene\Title\TestCollision\TestCollision.h">
       <Filter>ソース ファイル\Scene\Title\TestCollision</Filter>
     </ClInclude>
-    <ClInclude Include="Source\System\CompressManager\CompressManager.h">
-      <Filter>ソース ファイル\System\CompressManager</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Scene\Play\PlayScene.h">
       <Filter>ソース ファイル\Scene\Play</Filter>
     </ClInclude>
@@ -461,6 +449,9 @@
     </ClInclude>
     <ClInclude Include="Source\System\InputManager\InputManager.h">
       <Filter>ソース ファイル\System\InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\System\CompressManager\CompressManager.h">
+      <Filter>ソース ファイル\System\ComplessManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

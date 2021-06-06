@@ -15,7 +15,7 @@ Camera::Camera(SceneBase * _scene) :
 	m_offset(VGet(0, 0.3f, -2.5f)),
 	m_checkOff(VGet(0, 0.3f, -5.f))
 {
-	m_controller = CommonObjects::GetInstance()->FindGameObject<ControllerManager>("ControllerManager");
+	//m_controller = CommonObjects::GetInstance()->FindGameObject<ControllerManager>("ControllerManager");
 }
 
 Camera::~Camera()

@@ -15,7 +15,9 @@ private:
 public:
 	//キーを設定する。
 	//現在はこれを設定しないとキーの取得が出来ない
-	void SetKeyBind(std::string _keyName, int _key);
+	void AddKeyBind(std::string _keyName, int _key);
+	//KeyBindで追加した名前のキーに追加でキーを挿入する。
+	void AddKey(std::string _keyName, int _key);
 	//キーが無ければfalseが返る
 	bool IsTrigger(std::string _keyName);
 	bool IsInput(std::string _keyName);
