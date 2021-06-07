@@ -3,6 +3,8 @@
 #include "Library/Common/commonObjects.h"
 #include "Source/System/CompressManager/CompressManager.h"
 #include "Source/System/ResourceManager/ResourceManager.h"
+#include "Source/System/InputManager/InputManager.h"
+
 //#include "Source/System/KeyboardManager/KeyboardManager.h"
 
 EnemyManager::EnemyManager(SceneBase * _scene) :
@@ -14,10 +16,15 @@ EnemyManager::EnemyManager(SceneBase * _scene) :
 
 	m_anim = GameObject::AddComponent<AnimationComponent>("TestAnim");
 	GameObject::SetScale(VGet(0.01, 0.01, 0.01));
-	/*
-	KeyboardManager * key = p->FindGameObject<KeyboardManager>("KeyboardManager");
-	key->SetKeyBind("Hoge", KEY_INPUT_LSHIFT);
-	*/
+	InputManager * key = p->FindGameObject<InputManager>("InputManager");
+	//key->AddKeyBind("Hoge", KEY_INPUT_LSHIFT);
+	//key->AddFunction("Hoge", [this](const int _key) { Test(_key); });
+	//↑かもしくは
+	key->AddKeyBindFunction("Hoge", KEY_INPUT_LSHIFT, [this](const int _key) { Test(_key); });
+
+	//キー追加チェック
+	key->AddKey("Hoge", KEY_INPUT_LCONTROL);
+
 }
 
 EnemyManager::~EnemyManager()
@@ -52,16 +59,15 @@ void EnemyManager::Update()
 {
 	GameObject::Update();
 
-	/*
 	{
 		CommonObjects* p = CommonObjects::GetInstance();
-		KeyboardManager * key = p->FindGameObject<KeyboardManager>("KeyboardManager");
+		InputManager * key = p->FindGameObject<InputManager>("InputManager");
+		//もちろん単体でも使えます。
 		if (key->IsInput("Hoge"))
 			int a = 0;
 		if (key->IsTrigger("Hoge"))
 			int a = 0;
 	}
-	*/
 
 	if (--m_hogeTime <= 0)
 	{
@@ -105,4 +111,9 @@ void EnemyManager::Draw()
 
 		MV1DrawTriangleList(m_testModel.handle, i);
 	}
+}
+
+void EnemyManager::Test(const int _key)
+{
+	int a = 0;
 }

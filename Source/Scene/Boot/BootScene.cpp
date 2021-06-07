@@ -3,7 +3,6 @@
 #include <MyDxLib.h>
 #include "Library/Common/commonObjects.h"
 #include "Source/System/ResourceManager/ResourceManager.h"
-//#include "Source/System/ControllerManager/ControllerManager.h"
 #include "Source/System/DebugManager/DebugManager.h"
 #include "Source/System/LoadManager/LoadManager.h"
 #include "Source/System/CsvManager/CsvManager.h"
@@ -45,6 +44,21 @@ BootScene::BootScene()
 	InputManager * input = p->CreateGameObject<InputManager>("InputManager");
 	input->AddKeyBind("ESC", KEY_INPUT_ESCAPE);
 	input->AddKeyBind("SPACE", KEY_INPUT_SPACE);
+	input->AddKeyBind("DEBUG", KEY_INPUT_LCONTROL);
+	input->AddKey("DEBUG", KEY_INPUT_LALT);
+	input->AddKeyBind("UP", KEY_INPUT_UP);
+	input->AddKeyBind("DOWN", KEY_INPUT_DOWN);
+	input->AddKeyBind("RIGHT", KEY_INPUT_RIGHT);
+	input->AddKeyBind("LEFT", KEY_INPUT_LEFT);
+
+	/*
+	input->AddKeyBind("DEBUG", KEY_INPUT_LCONTROL);
+	input->AddKey("DEBUG", KEY_INPUT_LALT);
+	input->AddKeyBind("UP", KEY_INPUT_UP);
+	input->AddKeyBind("DOWN", KEY_INPUT_DOWN);
+	input->AddKeyBind("RIGHT", KEY_INPUT_RIGHT);
+	input->AddKeyBind("LEFT", KEY_INPUT_LEFT);
+	*/
 }
 
 BootScene::~BootScene()

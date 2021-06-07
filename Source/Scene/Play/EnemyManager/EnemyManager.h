@@ -23,4 +23,6 @@ private:
 	AnimationComponent* m_anim;
 
 	int m_hogeTime;
+private:
+	void Test(const int _key);
 };

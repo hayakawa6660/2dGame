@@ -1,112 +1,9 @@
 #pragma once
 
 #include "../ComponentBase.h"
-#include <map>
+#include <unordered_map>
 #include <vector>
-
-/*
-#if 0
-class InputComponent : public ComponentBase
-{
-public:
-	//XBOXコントローラーのID
-	enum class XCTR_ID : int
-	{
-		A		=	1 << 0,
-		B		=	1 << 1,
-		X		=	1 << 2,
-		Y		=	1 << 3,
-		UP		=	1 << 4,
-		DOWN	=	1 << 5,
-		RIGHT	=	1 << 6,
-		LEFT	=	1 << 7,
-		LB		=	1 << 8,
-		RB		=	1 << 9,
-		START	=	1 << 10,
-		SELECT	=	1 << 11,
-		RSTICK	=	1 << 12,
-		LSTICK	=	1 << 13,
-	};
-
-	//キーボードのID
-	enum class KEY_ID : int
-	{
-		UP		= 1 << 0,
-		DOWN	= 1 << 1,
-		RIGHT	= 1 << 2,
-		LEFT	= 1 << 3,
-		W		= 1 << 4,
-		A		= 1 << 5,
-		S		= 1 << 6,
-		D		= 1 << 7,
-		ALT		= 1 << 8,
-		CTRL	= 1 << 9,
-		SHIFT	= 1 << 10,
-		SPACE	= 1 << 11,
-		ESC		= 1 << 12,
-	};
-
-public:
-	InputComponent();
-	~InputComponent();
-private:
-	void Update()override;
-
-	void XCtrUpdate();
-
-	void KeyUpdate();
-private:
-	//XBOXコントローラー
-	int m_xInput;
-	int m_xLastInput;
-	XINPUT_STATE m_xState;
-	int m_controllerNum;
-	//キーボード
-	int m_keyInput;
-	int m_keyLastInput;
-public:
-	/// <summary>
-	/// 何個目のコントローラーかをセットする
-	/// 主にプレイヤーが複数いる場合で使う
-	/// </summary>
-	void SetControllerNum(int _num) { m_controllerNum = _num; }
-
-	/// <summary>
-	/// XBOXコントローラーの入力され始めを取得する
-	/// 二フレーム以降の入力は受け付けない
-	/// </summary>
-	/// <param name="_type">INPUT_TYPEのタイプ</param>
-	bool GetXOnceInputType(XCTR_ID _type);
-
-	/// <summary>
-	/// そのキーが現在入力されているかを見る
-	/// </summary>
-	/// <param name="_type">INPUT_TYPEのタイプ</param>
-	bool GetXInputType(XCTR_ID _type);
-
-	/// <summary>
-	/// 入力されているスティックの値を-32768 ～ 32767の間で送る
-	/// </summary>
-	int GetStickRX();
-	int GetStickRY();
-	int GetStickLX();
-	int GetStickLY();
-
-	/// <summary>
-	/// キーボードの入力を見る
-	/// 二フレーム以降の入力は受け付けない
-	/// </summary>
-	/// <param name="_type">KEY_IDのタイプ</param>
-	bool GetKeyOnceInputType(KEY_ID _type);
-
-	/// <summary>
-	/// キーボードのキーが現在入力されているかを見る
-	/// </summary>
-	/// <param name="_type">KEY_IDのタイプ</param>
-	bool GetKeyInputType(KEY_ID _type);
-};
-#endif
-*/
+#include <functional>
 
 class InputComponent : public ComponentBase
 {
@@ -119,20 +16,40 @@ private:
 	struct Input_State
 	{
 		std::vector<int> keyType;
+		std::function<void(const int)> function;
 		int input;
+		int num;
 	};
-	//順序が大事なのでmap
-	std::map<std::string, Input_State> m_key;
+	//最適化したのでumap
+	std::unordered_map<std::string, Input_State> m_key;
 	//キーボード
 	int m_input;		//現在入力されているキー情報
 	int m_lastInput;
 private:
-	void InputUpdate(std::pair<const std::string, Input_State>& _it, int _num);
+	void InputUpdate(std::pair<const std::string, Input_State>& _it);
 public:
-	//キーを設定する。
-	//現在はこれを設定しないとキーの取得が出来ない
+	//キーを設定する。(関数は追加しない)
 	void AddKeyBind(std::string &_keyName, int _key);
+	//キーを設定する。(関数も同時に追加)
+	void AddKeyBindFunction(std::string &_keyName, int _key, std::function<void(const int)> &_func);
+	/// <summary>
+	/// AddKeyBindで既に追加済みのキーに入力値を追加する。
+	/// </summary>
+	/// <param name="_keyName">入力値を追加するキーの名前</param>
+	/// <param name="_key">追加する入力値</param>
 	void AddKey(std::string &_keyName, int _key);
+	/// <summary>
+	/// AddKeyBindで既に追加済みのキーに入力されたときに呼び出される関数を追加する
+	/// </summary>
+	/// <param name="_keyName">入力値を追加するキーの名前</param>
+	/// <param name="_func">追加する関数</param>
+	void AddFunction(std::string &_keyName, std::function<void(const int)> &_func);
+
+	/// <summary>
+	/// _keyNameに一致するキーバインドを削除する
+	/// </summary>
+	/// <param name="_keyName">削除するキーの名前</param>
+	void RemoveKeyBind(std::string& _keyName);
 	//キーが無ければfalseが返る
 	bool IsTrigger(std::string &_keyName);
 	bool IsInput(std::string &_keyName);

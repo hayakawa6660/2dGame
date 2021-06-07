@@ -2,7 +2,7 @@
 #include "DebugClasses/DebugClasses.h"
 
 #include "Library/Common/commonObjects.h"
-//#include "../ControllerManager/ControllerManager.h"
+#include "../InputManager/InputManager.h"
 
 #include <stdarg.h>
 #include <stdio.h>
@@ -29,16 +29,14 @@ DebugManager::~DebugManager()
 void DebugManager::Update()
 {
 	DestroyUpdate();
-	/*
-	ControllerManager * p = CommonObjects::GetInstance()->FindGameObject<ControllerManager>("ControllerManager");
-	if (p->DebugKeyInput())
+	InputManager * p = CommonObjects::GetInstance()->FindGameObject<InputManager>("InputManager");
+	if (p->IsTrigger("DEBUG"))
 		m_isDebugMode = !m_isDebugMode;
 	if (!m_isDebugMode)
 		return;
 
 	ResetUpdate();
 	SelectUpdate();
-	*/
 }
 
 void DebugManager::Draw()
@@ -71,19 +69,15 @@ void DebugManager::Draw()
 
 void DebugManager::SelectUpdate()
 {
-	/*
-	ControllerManager * p = CommonObjects::GetInstance()->FindGameObject<ControllerManager>("ControllerManager");
+	InputManager * p = CommonObjects::GetInstance()->FindGameObject<InputManager>("InputManager");
 	//ã‰º‘I‘ð
-	if (p->GetKeyOnceInput(InputComponent::KEY_ID::UP) ||
-		p->GetXOnceInput(InputComponent::XCTR_ID::UP))
+	if (p->IsTrigger("UP"))
 		m_currentNum = (m_currentNum + m_menuNum + (int)m_active.size() - 1) % (m_menuNum + (int)m_active.size());
-	else if (p->GetKeyOnceInput(InputComponent::KEY_ID::DOWN) ||
-		p->GetXOnceInput(InputComponent::XCTR_ID::DOWN))
+	else if (p->IsTrigger("DOWN"))
 		m_currentNum = (m_currentNum + 1) % (m_menuNum + (int)m_active.size());
 
 	//Œˆ’è(ONAOFF‚ÌØ‚è‘Ö‚¦)
-	if (p->GetKeyOnceInput(InputComponent::KEY_ID::RIGHT) ||
-		p->GetXOnceInput(InputComponent::XCTR_ID::RIGHT))
+	if (p->IsTrigger("RIGHT"))
 	{
 		if (m_currentNum < (int)m_active.size())
 		{
@@ -114,7 +108,6 @@ void DebugManager::SelectUpdate()
 			}
 		}
 	}
-	*/
 }
 
 void DebugManager::ResetUpdate()
