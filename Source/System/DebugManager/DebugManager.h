@@ -19,7 +19,6 @@ public:
 
 private:
 	void Update()override;
-	void Draw()override;
 private:
 	std::map<std::string, bool> m_active;
 
@@ -39,7 +38,7 @@ public:
 	void SetActive(std::string &_className, bool _active);
 	void Puts(int _x, int _y, std::string _classTag, const char * _format, ...);
 
-	void VSOutputLog(const char* _format, ...);
+	//void VSOutputLog(const char* _format, ...);
 	/*
 	{
 #if _DEBUG

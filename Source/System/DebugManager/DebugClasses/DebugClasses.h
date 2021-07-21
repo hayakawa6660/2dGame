@@ -11,8 +11,6 @@ public:
 	DebugClasses(SceneBase * _scene);
 	~DebugClasses();
 private:
-	void Draw()override;
-private:
 	struct String_Info
 	{
 		std::string str;

@@ -48,10 +48,6 @@ void LoadManager::Update()
 			*/
 }
 
-void LoadManager::Draw()
-{
-}
-
 bool LoadManager::LoadCheck()
 {
 	if (!m_isLoadEnd)

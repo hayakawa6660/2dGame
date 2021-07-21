@@ -1,21 +1,21 @@
-#include "Shader.h"
+#include "Shader3D.h"
 #include "Library/Components/PolygonSetComponent/PolygonSetComponent.h"
 #include "Library/Common/commonObjects.h"
-#include "../../ResourceManager/ResourceManager.h"
+#include "Source/System/ResourceManager/ResourceManager.h"
 #include "Source/System/DebugManager/DebugManager.h"
 #include "Source/System/CompressManager/CompressManager.h"
 
-Shader::Shader(SceneBase * _scene) :
-	GameObject(nullptr), m_mirrorNum(0), m_loadEnd(false),
+Shader3D::Shader3D() :
+	m_mirrorNum(0), m_loadEnd(false),
 	m_lightTarget(VGet(0, 0, 0))
 {
-	
 	{
 		CompressManager * c = CommonObjects::GetInstance()->FindGameObject<CompressManager>("CompressManager");
 		c->UnCompress("data\\Shader.zip", "Shader");
 	}
 	//水面用ポリゴンのコンポーネントを生成
 	m_polygon = GameObject::AddComponent<PolygonSetComponent>("PolygonSetComponent");
+	//+++++++++++++++++++ 描画用シェーダーロード(開始)++++++++++++++++++++++++//
 	/****************
 	剛体
 	****************/
@@ -32,12 +32,6 @@ Shader::Shader(SceneBase * _scene) :
 	// 剛体 : ディフューズ、スぺキュラ付きトゥーンシェーダー
 	m_shader[MESH_TYPE::NMESH_DIFF_SPEC_TOON].vertFile = "data\\Resource\\Shader\\NormalMesh_Diff_Spec_Toon\\ShaderPolygon3DTestVS.vso";
 	m_shader[MESH_TYPE::NMESH_DIFF_SPEC_TOON].pixlFile = "data\\Resource\\Shader\\NormalMesh_Diff_Spec_Toon\\ShaderPolygon3DTestPS.pso";
-	// 剛体 : 影シェーダーセットアップ用のノーマルマップ付きシェーダー
-	m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NOT_NORMALMAP].vertFile = "data\\Resource\\Shader\\NormalMesh_ShadowSetUp_NotNormalMap\\ShaderPolygon3DTestVS.vso";
-	m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NOT_NORMALMAP].pixlFile = "data\\Resource\\Shader\\NormalMesh_ShadowSetUp_NotNormalMap\\ShaderPolygon3DTestPS.pso";
-	//ピクセルシェーダーは↑でやるため必要ないが、何か必要になるかもしれないので入れておく
-	m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NORMALMAP].vertFile = "data\\Resource\\Shader\\NormalMesh_ShadowSetUp_NormalMap\\ShaderPolygon3DTestVS.vso";
-	m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NORMALMAP].pixlFile = "data\\Resource\\Shader\\NormalMesh_ShadowSetUp_NormalMap\\ShaderPolygon3DTestPS.pso";
 	/****************
 	スキニング
 	****************/
@@ -47,9 +41,36 @@ Shader::Shader(SceneBase * _scene) :
 	//スキニングメッシュ5-8 : ディフューズテクスチャのみ(フォグ効果も無し)
 	m_shader[MESH_TYPE::SKIN8_DIFFUSE_ONLY].vertFile = "data\\Resource\\Shader\\SkinMesh5-8_DiffuseOnly\\ShaderPolygon3DTestVS.vso";
 	m_shader[MESH_TYPE::SKIN8_DIFFUSE_ONLY].pixlFile = "data\\Resource\\Shader\\SkinMesh5-8_DiffuseOnly\\ShaderPolygon3DTestPS.pso";
-	//スキニングメッシュ : ディフューズ、スぺキュラ、ノーマル
+	//スキニングメッシュ1-4 : ディフューズ、スぺキュラ、ノーマル
 	m_shader[MESH_TYPE::SKIN4_DIFF_SPEC_NORM].vertFile = "data\\Resource\\Shader\\SkinMesh1-4_NormalMap\\ShaderPolygon3DTestVS.vso";
 	m_shader[MESH_TYPE::SKIN4_DIFF_SPEC_NORM].pixlFile = "data\\Resource\\Shader\\SkinMesh1-4_NormalMap\\ShaderPolygon3DTestPS.pso";
+	//スキニングメッシュ5-8 : ディフューズ、スぺキュラ、ノーマル
+	m_shader[MESH_TYPE::SKIN8_DIFFUSE_ONLY].vertFile = "data\\Resource\\Shader\\SkinMesh5-8_DiffuseOnly\\ShaderPolygon3DTestVS.vso";
+	m_shader[MESH_TYPE::SKIN8_DIFFUSE_ONLY].pixlFile = "data\\Resource\\Shader\\SkinMesh5-8_DiffuseOnly\\ShaderPolygon3DTestPS.pso";
+
+
+	//+++++++++++++++++++++++ 描画用シェーダーロード(終了) +++++++++++++++++++++++//
+	/******************
+	影シェーダー
+	*******************/
+	// 剛体 : 影シェーダーセットアップ用のノーマルマップ付きシェーダー
+	m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NOT_NORMAL].vertFile = "data\\Resource\\Shader\\NormalMesh_ShadowSetUp_NotNormalMap\\ShaderPolygon3DTestVS.vso";
+	m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NOT_NORMAL].pixlFile = "data\\Resource\\Shader\\NormalMesh_ShadowSetUp_NotNormalMap\\ShaderPolygon3DTestPS.pso";
+	//ピクセルシェーダーは↑でやるため必要ないが、何か必要になるかもしれないので入れておく
+	m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NORMALMAP].vertFile = "data\\Resource\\Shader\\NormalMesh_ShadowSetUp_NormalMap\\ShaderPolygon3DTestVS.vso";
+	m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NORMALMAP].pixlFile = "data\\Resource\\Shader\\NormalMesh_ShadowSetUp_NormalMap\\ShaderPolygon3DTestPS.pso";
+	//スキン1-4 : ノーマルマップ無し
+	m_shader[MESH_TYPE::SKIN4_SHADOW_SETUP_NOT_NORMAL].vertFile = "data\\Resource\\Shader\\SkinMesh1-4_ShadowSetUp_NotNormalMap\\ShaderPolygon3DTestVS.vso";
+	m_shader[MESH_TYPE::SKIN4_SHADOW_SETUP_NOT_NORMAL].pixlFile = "data\\Resource\\Shader\\SkinMesh1-4_ShadowSetUp_NotNormalMap\\ShaderPolygon3DTestPS.pso";
+	//スキン1-4 : ノーマルマップあり
+	m_shader[MESH_TYPE::SKIN4_SHADOW_SETUP_NORMALMAP].vertFile = "data\\Resource\\Shader\\SkinMesh1-4_ShadowSetUp_NormalMap\\ShaderPolygon3DTestVS.vso";
+	m_shader[MESH_TYPE::SKIN4_SHADOW_SETUP_NORMALMAP].pixlFile = "data\\Resource\\Shader\\SkinMesh1-4_ShadowSetUp_NormalMap\\ShaderPolygon3DTestPS.pso";
+	//スキン5-8 : ノーマルマップ無し
+	m_shader[MESH_TYPE::SKIN8_SHADOW_SETUP_NOT_NORMAL].vertFile = "data\\Resource\\Shader\\SkinMesh5-8_ShadowSetUp_NotNormalMap\\ShaderPolygon3DTestVS.vso";
+	m_shader[MESH_TYPE::SKIN8_SHADOW_SETUP_NOT_NORMAL].pixlFile = "data\\Resource\\Shader\\SkinMesh5-8_ShadowSetUp_NotNormalMap\\ShaderPolygon3DTestPS.pso";
+	//スキン5-8 : ノーマルマップあり
+	m_shader[MESH_TYPE::SKIN8_SHADOW_SETUP_NORMALMAP].vertFile = "data\\Resource\\Shader\\SkinMesh5-8_ShadowSetUp_NormalMap\\ShaderPolygon3DTestVS.vso";
+	m_shader[MESH_TYPE::SKIN8_SHADOW_SETUP_NORMALMAP].pixlFile = "data\\Resource\\Shader\\SkinMesh5-8_ShadowSetUp_NormalMap\\ShaderPolygon3DTestPS.pso";
 
 	// フレネル反射(水)シェーダー
 	m_shader[MESH_TYPE::WATER].vertFile = "data\\Resource\\Shader\\FresnelReflection\\ShaderPolygon3DTestVS.vso";
@@ -90,14 +111,14 @@ Shader::Shader(SceneBase * _scene) :
 
 }
 
-Shader::~Shader()
+Shader3D::~Shader3D()
 {
 	//ハンドルはリソースマネージャーで自動デリートされるのでリストの初期化だけをする。
 	m_shader.clear();
 	m_polygon = nullptr;
 }
 
-void Shader::Update()
+void Shader3D::Update()
 {
 	if (!m_loadEnd)
 	{
@@ -139,7 +160,7 @@ void Shader::Update()
 
 }
 
-void Shader::CBufferUpdate()
+void Shader3D::CBufferUpdate()
 {
 	//頂点シェーダーに値の書き込み
 	//シェーダー側でfloat4x4を設定しているので、こちらでMATRIX二つを内包したLIGHT_MATRIXに変換する
@@ -163,7 +184,7 @@ void Shader::CBufferUpdate()
 	SetShaderConstantBuffer(m_cbufferPS, DX_SHADERTYPE_PIXEL, 4);
 }
 
-void Shader::SetUpMirror(int _mirrorNum, VECTOR & _cPosition, VECTOR & _cTarget)
+void Shader3D::SetUpMirror(int _mirrorNum, VECTOR & _cPosition, VECTOR & _cTarget)
 {
 	SetDrawScreen(m_mirror[_mirrorNum].handle);
 	ClearDrawScreen();
@@ -202,7 +223,7 @@ void Shader::SetUpMirror(int _mirrorNum, VECTOR & _cPosition, VECTOR & _cTarget)
 	}
 }
 
-void Shader::MirrorRender(int _mirrorNum)
+void Shader3D::MirrorRender(int _mirrorNum)
 {
 	VERTEX3DSHADER Vert[6];
 	VECTOR MirrorNormal;
@@ -271,7 +292,7 @@ void Shader::MirrorRender(int _mirrorNum)
 	SetDrawMode(DX_DRAWMODE_NEAREST);
 }
 
-void Shader::MirrorSet(VECTOR & _position, float _radiusX, float _radiusY)
+void Shader3D::MirrorSet(VECTOR & _position, float _radiusX, float _radiusY)
 {
 	m_polygon->SqareSet(_position, _radiusX, _radiusY);
 
@@ -283,7 +304,7 @@ void Shader::MirrorSet(VECTOR & _position, float _radiusX, float _radiusY)
 	m_mirror.emplace_back(state);
 }
 
-void Shader::SetMeshTypeShader(MESH_TYPE _type)
+void Shader3D::SetMeshTypeShader(MESH_TYPE _type)
 {
 	switch (_type)
 	{
@@ -299,10 +320,12 @@ void Shader::SetMeshTypeShader(MESH_TYPE _type)
 		SetUseVertexShader(m_shader[_type].vertex);
 		SetUsePixelShader(m_shader[_type].pixcel);
 		break;
-	case MESH_TYPE::NMESH_SHADOW_SETUP_NOT_NORMALMAP:
-		MV1SetUseOrigShader(TRUE);
-		SetUseVertexShader(m_shader[_type].vertex);
-		break;
+		//↓この辺は全て同じ処理
+	case MESH_TYPE::SKIN4_SHADOW_SETUP_NORMALMAP:	//スキン1-4 : ノーマル付き
+	case MESH_TYPE::SKIN4_SHADOW_SETUP_NOT_NORMAL:	//スキン1-4 : ノーマル無し
+	case MESH_TYPE::SKIN8_SHADOW_SETUP_NORMALMAP:	//スキン5-8 : ノーマル付き
+	case MESH_TYPE::SKIN8_SHADOW_SETUP_NOT_NORMAL:	//スキン5-8 : ノーマル無し
+	case MESH_TYPE::NMESH_SHADOW_SETUP_NOT_NORMAL:	//剛体		: ノーマル無し
 	case MESH_TYPE::NMESH_SHADOW_SETUP_NORMALMAP:
 		MV1SetUseOrigShader(TRUE);
 		SetUseVertexShader(m_shader[_type].vertex);
@@ -323,7 +346,7 @@ void Shader::SetMeshTypeShader(MESH_TYPE _type)
 	}
 }
 
-void Shader::SetShadowSetUpShader(bool _start)
+void Shader3D::SetShadowSetUpShader(bool _start)
 {
 	if (_start)
 	{
@@ -356,7 +379,7 @@ void Shader::SetShadowSetUpShader(bool _start)
 		m_lightMat.projection = GetCameraProjectionMatrix();
 
 		MV1SetUseOrigShader(TRUE);
-		SetUsePixelShader(m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NOT_NORMALMAP].pixcel);
+		SetUsePixelShader(m_shader[MESH_TYPE::NMESH_SHADOW_SETUP_NOT_NORMAL].pixcel);
 	}
 	else
 	{

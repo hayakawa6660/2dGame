@@ -31,10 +31,6 @@ private:
 	void Load()override;
 	void Start()override;
 	void Update()override;
-	//•`‰æŠÖŒW
-	void ShadowSetUp()override;
-	void DrawSetUp()override;
-	void Draw()override;
 
 private:
 	Model_Info m_model;

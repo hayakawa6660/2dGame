@@ -27,10 +27,6 @@ void ResourceManager::Update()
 	AllLoadEndCheck();
 }
 
-void ResourceManager::Draw()
-{
-}
-
 void ResourceManager::AllDelete()
 {
 	try {

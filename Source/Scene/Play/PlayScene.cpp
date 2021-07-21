@@ -3,7 +3,9 @@
 #include "PlayState/PlayLoad/PlayLoad.h"
 #include "Camera/Camera.h"
 #include "Library/Common/commonObjects.h"
-#include "Source/System/RenderManager/Shader/Shader.h"
+
+//Render変更箇所
+#include "Library/Render/RenderManager.h"
 
 PlayScene::PlayScene() :
 	m_next(nullptr),
@@ -17,12 +19,13 @@ PlayScene::PlayScene() :
 	//SetFogColor(255, 50, 50);
 
 	// フォグの開始距離を0、終了距離を1500にする
-	SetFogStartEnd(0.0f, 1500.f);
-
+	SetFogStartEnd(0.0f, 3000.f);
+	RenderManager::GetInstance()->CreateCamera();
 }
 
 PlayScene::~PlayScene()
 {
+	RenderManager::GetInstance()->DeleteCamera();
 }
 
 void PlayScene::Load()
@@ -53,39 +56,5 @@ void PlayScene::Update()
 	{
 		SceneBase::Update();
 	}
-}
-
-void PlayScene::Draw()
-{
-	if (m_current)
-		m_current->Draw();
-	Camera *camera = SceneBase::FindGameObject<Camera>("Camera");
-	if (m_current->GetTag() != "PlayLoad")
-	{
-		Shader*shader = CommonObjects::GetInstance()->FindGameObject<Shader>("Shader");
-		{
-			shader->SetShadowSetUpShader(true);
-			SceneBase::ShadowSetUp();
-			shader->SetShadowSetUpShader(false);
-		}
-		int num = shader->GetMirrorNum();
-		{	//鏡(水面)から見た時の反射板のセットアップ
-			VECTOR pos = camera->GetPosition();
-			VECTOR target = camera->GetTarget();
-			for (int i = 0; i < num; ++i)
-			{
-				shader->SetUpMirror(i, pos, target);
-				SceneBase::DrawSetUp();
-			}
-		}
-		{	//本表示
-			camera->SetCameraPosAndDir();
-			SceneBase::Draw();
-		}
-		{	//水面表示
-			for (int i = 0; i < num; ++i)
-				shader->MirrorRender(i);
-		}
-	}
-
+	DrawFormatString(0, 0, 0xffffff, "PlayScene");
 }

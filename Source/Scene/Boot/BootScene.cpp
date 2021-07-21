@@ -11,7 +11,6 @@
 #include "Source/System/FadeManager/FadeManager.h"
 #include "Source/System/SoundManager/SoundManager.h"
 #include "Source/System/CacheManager/CacheManager.h"
-#include "Source/System/RenderManager/RenderManager.h"
 #include "Source/System/ThreadManager/ThreadManager.h"
 #include "Source/System/CompressManager/CompressManager.h"
 #include "Source/System/InputManager/InputManager.h"
@@ -33,7 +32,6 @@ BootScene::BootScene()
 	p->CreateGameObject<EffectManager>("EffectManager");
 	p->CreateGameObject<SoundManager>("SoundManager");
 	p->CreateGameObject<CacheManager>("CacheManager");
-	p->CreateGameObject<RenderManager>("RenderManager");
 	p->CreateGameObject<ThreadManager>("ThreadManager");
 
 	FadeManager * fade = p->CreateGameObject<FadeManager>("FadeManager");
@@ -73,9 +71,4 @@ void BootScene::Update()
 		p->ResetLoadSize();
 		SceneManager::GetInstance()->ChangeScene("TitleScene"); // 起動が終わったらTitleを表示
 	}
-}
-
-void BootScene::Draw()
-{
-	DrawFormatString(0, 0, 0xffffff, "起動中...");
 }

@@ -8,7 +8,7 @@
 
 class PolygonSetComponent;
 
-class Shader : public GameObject
+class Shader3D : public GameObject
 {
 public:
 	//整理中のため、未実装はコメントアウト中
@@ -23,16 +23,25 @@ public:
 		NMESH_DIFF_SPEC_NORM_SHADOW,		// 剛体 : ディフューズ、スぺキュラとノーマルマップシェーダー(フォグ効果あり)、影付き
 
 		SKIN4_DIFF_SPEC_NORM,				// スキン1_4 : ディフューズ、スぺキュラとノーマルマップシェーダー
+		SKIN8_DIFF_SPEC_NORM,				// スキン5_8 : ディフューズ、スぺキュラとノーマルマップシェーダー
 		NMESH_DIFF_SPEC_TOON,				// 剛体 : ディフューズ、スぺキュラ付きトゥーンシェーダー
-		NMESH_SHADOW_SETUP_NOT_NORMALMAP,	// 剛体 : 影シェーダーセットアップ用のノーマルマップ付きシェーダー
-		NMESH_SHADOW_SETUP_NORMALMAP,		// 剛体 : 影シェーダーセットアップ用のノーマルマップ無しシェーダー
+		
+		NMESH_SHADOW_SETUP_NOT_NORMAL,		// 剛体 : 影シェーダーセットアップ用のノーマルマップ無しシェーダー
+		NMESH_SHADOW_SETUP_NORMALMAP,		// 剛体 : 影シェーダーセットアップ用のノーマルマップ付きシェーダー
+		
+		SKIN4_SHADOW_SETUP_NOT_NORMAL,		// スキン1_4 : 影シェーダーセットアップ用のノーマルマップ無しシェーダー
+		SKIN4_SHADOW_SETUP_NORMALMAP,		// スキン1_4 : 影シェーダーセットアップ用のノーマルマップ付きシェーダー
+
+		SKIN8_SHADOW_SETUP_NOT_NORMAL,		// スキン5_8 : 影シェーダーセットアップ用のノーマルマップ無しシェーダー
+		SKIN8_SHADOW_SETUP_NORMALMAP,		// スキン5_8 : 影シェーダーセットアップ用のノーマルマップ付きシェーダー
+
 		WATER,								// フレネル反射(水)シェーダー
 	};
 public:
-	Shader(SceneBase * _scene);
-	~Shader();
-private:
+	Shader3D();
+	~Shader3D();
 	void Update()override;
+private:
 	void CBufferUpdate();
 public:
 	void SetUpMirror(int _mirrorNum, VECTOR &_cPosition, VECTOR &_cTarget);

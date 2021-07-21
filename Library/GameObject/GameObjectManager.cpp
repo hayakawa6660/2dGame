@@ -1,4 +1,4 @@
-#include "gameObjectManager.h"
+#include "GameObjectManager.h"
 
 GameObjectManager::GameObjectManager()
 {
@@ -50,47 +50,6 @@ void GameObjectManager::Update()
 bool GameObjectManager::Comp(const NODE & o1, const NODE & o2)
 {
 	return o1.order < o2.order;
-}
-
-void GameObjectManager::Draw()
-{
-	if (m_needSort)
-	{
-		m_drawObjects.clear();
-		m_drawObjects = m_objects; // Listを全コピー
-		m_drawObjects.sort(Comp); // 昇順にソート
-		m_needSort = false;
-	}
-
-	for (auto& node : m_drawObjects)
-		node.object->Draw();
-}
-
-void GameObjectManager::DrawSetUp()
-{
-	if (m_needSort)
-	{
-		m_drawObjects.clear();
-		m_drawObjects = m_objects; // Listを全コピー
-		m_drawObjects.sort(Comp); // 昇順にソート
-		m_needSort = false;
-	}
-
-	for (auto& node : m_drawObjects)	//影以外の描画のセットアップ
-		node.object->DrawSetUp();
-}
-
-void GameObjectManager::ShadowSetUp()
-{
-	if (m_needSort) {
-		m_drawObjects.clear();
-		m_drawObjects = m_objects; // Listを全コピー
-		m_drawObjects.sort(Comp); // 昇順にソート
-		m_needSort = false;
-	}
-
-	for (auto& node : m_drawObjects)	//影のセットアップ
-		node.object->ShadowSetUp();
 }
 
 void GameObjectManager::PushGameObject(GameObject * obj)

@@ -14,7 +14,7 @@ DebugClasses::~DebugClasses()
 {
 	m_strList.clear();
 }
-
+/*
 void DebugClasses::Draw()
 {
 	if (!m_active)
@@ -30,7 +30,7 @@ void DebugClasses::Draw()
 	if (!Debug::GetFactorFlag("GameStop"))
 		m_strList.clear();
 }
-
+*/
 void DebugClasses::Puts(int _x, int _y, const char * _format, ...)
 {
 	String_Info info;

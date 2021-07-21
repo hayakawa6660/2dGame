@@ -10,9 +10,6 @@ public:
 
 	void Start();
 	void Update();
-	void Draw();
-	void DrawSetUp();
-	void ShadowSetUp();
 	/// <summary>
 	/// オブジェクトの管理を開始する
 	/// </summary>

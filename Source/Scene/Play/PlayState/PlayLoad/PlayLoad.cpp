@@ -6,7 +6,6 @@
 #include "../../EnemyManager/EnemyManager.h"
 #include "../../Player/Player.h"
 #include "../../FieldManager/FieldManager.h"
-#include "../../Camera/Camera.h"
 #include "../../Light/Light.h"
 #include "Library/Common/commonObjects.h"
 #include "Source/System/ThreadManager/ThreadManager.h"
@@ -40,7 +39,6 @@ void PlayLoad::Load()
 	p->CreateGameObject<EnemyManager>("EnemyManager");
 	p->CreateGameObject<Player>("Player");
 	p->CreateGameObject<FieldManager>("FieldManager");
-	p->CreateGameObject<Camera>("Camera");
 	p->CreateGameObject<Light>("Light");
 
 	//スレッド終了を伝える
@@ -80,8 +78,4 @@ void PlayLoad::Update()
 	break;
 	default:	break;
 	}
-}
-
-void PlayLoad::Draw()
-{
 }

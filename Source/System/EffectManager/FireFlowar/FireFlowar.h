@@ -9,7 +9,6 @@ public:
 	~FireFlowarEffect();
 	void Start()override;
 	void Update()override;
-	void Draw()override;
 
 private:
 	void ChildCreate(int _num);

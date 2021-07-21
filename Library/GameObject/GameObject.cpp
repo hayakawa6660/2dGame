@@ -47,14 +47,6 @@ void GameObject::ComponentUpdate()
 	}
 }
 
-void GameObject::ComponentDraw()
-{
-	for (auto& it : m_comUpList)
-	{
-		it.component->Draw();
-	}
-}
-
 bool GameObject::Comp(const Components_Info & o1, const Components_Info & o2)
 {
 	return o1.priority < o2.priority;

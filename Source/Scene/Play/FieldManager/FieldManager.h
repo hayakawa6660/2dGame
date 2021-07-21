@@ -3,7 +3,6 @@
 #include "Library/GameObject/GameObject.h"
 #include "Source/Common.h"
 
-class Shader;
 class FieldManager : public GameObject
 {
 public:
@@ -13,13 +12,9 @@ private:
 	void Load()override;
 	void Start()override;
 	void Update()override;
-	void ShadowSetUp()override;
-	void DrawSetUp()override;
-	void Draw()override;
 private:
 	Model_Info m_ground;
 	Model_Info m_sky;
-	Shader * m_shader;
 };
 
 /*

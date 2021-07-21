@@ -10,5 +10,4 @@ public:
 	virtual void Load()override {}
 	virtual void Start()override {}
 	virtual void Update()override {}
-	virtual void Draw()override {}
 };

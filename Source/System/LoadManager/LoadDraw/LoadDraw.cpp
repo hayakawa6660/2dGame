@@ -21,6 +21,7 @@ void LoadDraw::Update()
 	m_animCount++;
 }
 
+/*
 void LoadDraw::Draw()
 {
 	for (auto & it : m_infoList)
@@ -37,6 +38,7 @@ void LoadDraw::Draw()
 		}
 	}
 }
+*/
 
 void LoadDraw::SetActive(bool _flag)
 {

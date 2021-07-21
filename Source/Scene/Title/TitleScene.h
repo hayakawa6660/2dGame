@@ -11,7 +11,6 @@ public:
 	~TitleScene();
 private:
 	void Update()override;
-	void Draw()override;
 	void Load();
 	//void DrawFString(int _x, int _y, const char * _format...);
 private:

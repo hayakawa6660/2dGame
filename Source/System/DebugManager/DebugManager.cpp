@@ -38,7 +38,7 @@ void DebugManager::Update()
 	ResetUpdate();
 	SelectUpdate();
 }
-
+/*
 void DebugManager::Draw()
 {
 	if (!m_isDebugMode)
@@ -66,7 +66,7 @@ void DebugManager::Draw()
 		num++;
 	}
 }
-
+*/
 void DebugManager::SelectUpdate()
 {
 	InputManager * p = CommonObjects::GetInstance()->FindGameObject<InputManager>("InputManager");

@@ -3,7 +3,9 @@
 #include "Library/Common/commonObjects.h"
 #include "Source/System/CompressManager/CompressManager.h"
 #include "Source/System/ResourceManager/ResourceManager.h"
-#include "Source/System/RenderManager/Shader/Shader.h"
+//今回のRender追加項目
+#include "Library/Render/RenderManager.h"
+#include "Library/Render/Render3D/Shader3D/Shader3D.h"
 
 Player::Player(SceneBase * _scene) :
 	GameObject(_scene),
@@ -11,7 +13,6 @@ Player::Player(SceneBase * _scene) :
 	m_position()
 {
 	CommonObjects* p = CommonObjects::GetInstance();
-	m_shader = p->FindGameObject<Shader>("Shader");
 	{	//モデルのzip解凍
 		CompressManager * c = p->FindGameObject<CompressManager>("CompressManager");
 		c->UnCompress("data\\Player.zip", "Player");
@@ -42,6 +43,8 @@ void Player::Start()
 	{	//モデルを取得する
 		ResourceManager* p = CommonObjects::GetInstance()->FindGameObject<ResourceManager>("SceneResource");
 		m_model.handle = p->GetHandle(m_model.fileName);
+		//モデルをRenderクラスに登録。
+		RenderManager::GetInstance()->AddMV1Model("Player", m_model.handle, Shader3D::MESH_TYPE::NMESH_DIFF_SPEC_TOON, Shader3D::MESH_TYPE::NMESH_SHADOW_SETUP_NOT_NORMAL);
 	}
 }
 
@@ -53,24 +56,6 @@ void Player::Update()
 	if (m_state) {
 		m_state->Update();
 	}
-}
 
-void Player::ShadowSetUp()
-{
-	MV1SetPosition(m_model.handle, VGet(0, 0, 0));
-	m_shader->SetMeshTypeShader(Shader::MESH_TYPE::NMESH_SHADOW_SETUP_NOT_NORMALMAP);
-	MV1DrawModel(m_model.handle);
-}
-
-void Player::DrawSetUp()
-{
-	MV1SetPosition(m_model.handle, VGet(0, 0, 0));
-}
-
-void Player::Draw()
-{
-	MV1SetMatrix(m_model.handle, m_matrix);
-	m_shader->SetMeshTypeShader(Shader::MESH_TYPE::NMESH_DIFF_SPEC_TOON);
-	MV1DrawModel(m_model.handle);
-	m_shader->SetMeshTypeShader(Shader::MESH_TYPE::NO_SHADER);
+	//描画方法が変わったので一旦Playerを借りて書きます。
 }

@@ -14,7 +14,6 @@ public:
 private:
 	void Start()override;
 	void Update()override;
-	void Draw()override;
 public:
 	void SetActive(bool _flag);
 	void SetSprite(LoadManager::SPRITE_TYPE _type, Sprite_Info & _info, VECTOR _pos);

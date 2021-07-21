@@ -18,7 +18,6 @@ public:
 	static SceneManager* GetInstance();
 	void Start();
 	void Update();
-	void Draw();
 	void Release();
 
 	/// <summary>

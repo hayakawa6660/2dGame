@@ -12,7 +12,6 @@ EnemyManager::EnemyManager(SceneBase * _scene) :
 	m_hogeTime(120)
 {
 	CommonObjects* p = CommonObjects::GetInstance();
-	m_shader = p->FindGameObject<Shader>("Shader");
 
 	m_anim = GameObject::AddComponent<AnimationComponent>("TestAnim");
 	GameObject::SetScale(VGet(0.01, 0.01, 0.01));
@@ -91,27 +90,6 @@ void EnemyManager::Update()
 	GameObject::SetPosition(pos);
 }
 
-void EnemyManager::Draw()
-{
-	MATRIX mScl = MGetScale(GameObject::GetScale());
-	MATRIX mr = mScl * MGetRotY(DX_PI_F + GameObject::GetRotation().y);
-	MATRIX mt = MGetTranslate(GameObject::GetPosition());
-	MATRIX m = MMult(mr, mt);
-	MV1SetMatrix(m_testModel.handle, m);
-	//4と8が混在しているので、シェーダーも分ける必要がある。
-	int triListNum = MV1GetTriangleListNum(m_testModel.handle);
-	for (int i = 0; i < triListNum; i++)
-	{
-		//4ボーン以内か5ボーン以上でシェーダーを分ける
-		int type = MV1GetTriangleListVertexType(m_testModel.handle, i);
-		if (type == DX_MV1_VERTEX_TYPE_4FRAME)
-			m_shader->SetMeshTypeShader(Shader::MESH_TYPE::SKIN4_DIFFUSE_ONLY);
-		else if (type == DX_MV1_VERTEX_TYPE_8FRAME)
-			m_shader->SetMeshTypeShader(Shader::MESH_TYPE::SKIN8_DIFFUSE_ONLY);
-
-		MV1DrawTriangleList(m_testModel.handle, i);
-	}
-}
 
 void EnemyManager::Test(const int _key)
 {

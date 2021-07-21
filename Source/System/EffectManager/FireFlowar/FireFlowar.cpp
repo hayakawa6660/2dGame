@@ -63,6 +63,7 @@ void FireFlowarEffect::Update()
 	}
 }
 
+/*
 void FireFlowarEffect::Draw()
 {
 	for (auto &it : m_child)
@@ -74,6 +75,7 @@ void FireFlowarEffect::Draw()
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
 }
+*/
 
 void FireFlowarEffect::ChildCreate(int _num)
 {

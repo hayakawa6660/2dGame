@@ -11,5 +11,4 @@ private:
 	void Load()override;
 	void Start()override;
 	void Update()override;
-	void Draw()override;
 };

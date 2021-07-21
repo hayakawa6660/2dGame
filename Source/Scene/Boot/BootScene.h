@@ -7,5 +7,4 @@ public:
 	BootScene();
 	~BootScene();
 	void Update() override;
-	void Draw() override;
 };

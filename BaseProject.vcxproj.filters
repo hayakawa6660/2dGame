@@ -89,12 +89,6 @@
     <Filter Include="ソース ファイル\System\CacheManager">
       <UniqueIdentifier>{aebe2129-1722-43b5-ab36-dee8105ced03}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\System\RenderManager">
-      <UniqueIdentifier>{6f9b158e-2b37-4c32-8fbb-f8aa8f91c83d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\System\RenderManager\Shader">
-      <UniqueIdentifier>{7d46ecda-e36a-4165-a219-bbee41f7555b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Library\Components\PolygonSetComponent">
       <UniqueIdentifier>{519fc605-2b30-406e-87c2-e98c66016c69}</UniqueIdentifier>
     </Filter>
@@ -128,9 +122,6 @@
     <Filter Include="ソース ファイル\Scene\Play\FieldManager\FieldObject">
       <UniqueIdentifier>{cb5f2cda-e2d1-4ac6-9980-edbc8566e5d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Scene\Play\Camera">
-      <UniqueIdentifier>{78c50bce-b793-4328-be0b-b29a2450a787}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Scene\Play\Light">
       <UniqueIdentifier>{c9f6a4c1-67d2-416b-9828-c215cb93002a}</UniqueIdentifier>
     </Filter>
@@ -142,6 +133,18 @@
     </Filter>
     <Filter Include="ソース ファイル\System\ComplessManager">
       <UniqueIdentifier>{c99a205a-15eb-4617-ba67-9917c5d2d870}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Library\Render">
+      <UniqueIdentifier>{2a74f66a-1104-4556-be67-c41068f44307}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Library\Render\Render3D">
+      <UniqueIdentifier>{ba69a603-ed1b-4266-a480-dd4169f3e1f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Library\Render\Render3D\Camera">
+      <UniqueIdentifier>{3e820e53-adb9-4dfc-a74b-d65a78de6cd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Library\Render\Render3D\Shader3D">
+      <UniqueIdentifier>{5344d9c0-b71e-4468-a6d2-3961268dcb2e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -229,12 +232,6 @@
     <ClCompile Include="Source\System\CacheManager\CacheManager.cpp">
       <Filter>ソース ファイル\System\CacheManager</Filter>
     </ClCompile>
-    <ClCompile Include="Source\System\RenderManager\RenderManager.cpp">
-      <Filter>ソース ファイル\System\RenderManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\System\RenderManager\Shader\Shader.cpp">
-      <Filter>ソース ファイル\System\RenderManager\Shader</Filter>
-    </ClCompile>
     <ClCompile Include="Library\Components\PolygonSetComponent\PolygonSetComponent.cpp">
       <Filter>ソース ファイル\Library\Components\PolygonSetComponent</Filter>
     </ClCompile>
@@ -262,9 +259,6 @@
     <ClCompile Include="Source\Scene\Play\FieldManager\FieldObject\FIeldObject.cpp">
       <Filter>ソース ファイル\Scene\Play\FieldManager\FieldObject</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Scene\Play\Camera\Camera.cpp">
-      <Filter>ソース ファイル\Scene\Play\Camera</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Scene\Play\Light\Light.cpp">
       <Filter>ソース ファイル\Scene\Play\Light</Filter>
     </ClCompile>
@@ -285,6 +279,18 @@
     </ClCompile>
     <ClCompile Include="Source\System\CompressManager\CompressManager.cpp">
       <Filter>ソース ファイル\System\ComplessManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Render\RenderManager.cpp">
+      <Filter>ソース ファイル\Library\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Render\Render3D\Render3D.cpp">
+      <Filter>ソース ファイル\Library\Render\Render3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Render\Render3D\Camera\Camera.cpp">
+      <Filter>ソース ファイル\Library\Render\Render3D\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Render\Render3D\Shader3D\Shader3D.cpp">
+      <Filter>ソース ファイル\Library\Render\Render3D\Shader3D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -378,12 +384,6 @@
     <ClInclude Include="Source\System\CacheManager\CacheManager.h">
       <Filter>ソース ファイル\System\CacheManager</Filter>
     </ClInclude>
-    <ClInclude Include="Source\System\RenderManager\RenderManager.h">
-      <Filter>ソース ファイル\System\RenderManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\System\RenderManager\Shader\Shader.h">
-      <Filter>ソース ファイル\System\RenderManager\Shader</Filter>
-    </ClInclude>
     <ClInclude Include="Library\Components\PolygonSetComponent\PolygonSetComponent.h">
       <Filter>ソース ファイル\Library\Components\PolygonSetComponent</Filter>
     </ClInclude>
@@ -426,9 +426,6 @@
     <ClInclude Include="Source\Scene\Play\FieldManager\FieldObject\FIeldObject.h">
       <Filter>ソース ファイル\Scene\Play\FieldManager\FieldObject</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Scene\Play\Camera\Camera.h">
-      <Filter>ソース ファイル\Scene\Play\Camera</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Scene\Play\Light\Light.h">
       <Filter>ソース ファイル\Scene\Play\Light</Filter>
     </ClInclude>
@@ -452,6 +449,18 @@
     </ClInclude>
     <ClInclude Include="Source\System\CompressManager\CompressManager.h">
       <Filter>ソース ファイル\System\ComplessManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Render\RenderManager.h">
+      <Filter>ソース ファイル\Library\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Render\Render3D\Render3D.h">
+      <Filter>ソース ファイル\Library\Render\Render3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Render\Render3D\Camera\Camera.h">
+      <Filter>ソース ファイル\Library\Render\Render3D\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Render\Render3D\Shader3D\Shader3D.h">
+      <Filter>ソース ファイル\Library\Render\Render3D\Shader3D</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

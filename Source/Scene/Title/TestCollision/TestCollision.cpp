@@ -55,13 +55,6 @@ void TestCollision::Update()
 	m_collision->SetSphere(pos, 10.f, "Test");
 }
 
-void TestCollision::Draw()
-{
-	VECTOR pos = GameObject::GetPosition();
-
-	DrawCircle((int)pos.x, (int)pos.y, 10, 0xffffff, true);
-}
-
 void TestCollision::OnCollision(const Hit_Info &_info)
 {
 	std::string str = _info.hitObject->GetTag();

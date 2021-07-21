@@ -20,7 +20,3 @@ void Light::Start()
 void Light::Update()
 {
 }
-
-void Light::Draw()
-{
-}

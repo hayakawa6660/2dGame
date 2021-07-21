@@ -10,7 +10,6 @@ public:
 	~PlayScene();
 private:
 	void Update()override;
-	void Draw()override;
 	void Load();
 
 	void ChangeState();

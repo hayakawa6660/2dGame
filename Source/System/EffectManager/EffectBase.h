@@ -16,7 +16,6 @@ public:
 	virtual ~EffectBase() {}
 	virtual void Start()override {}
 	virtual void Update()override {}
-	virtual void Draw()override {}
 
 	void SetInfo(Sprite_Info _info, VECTOR _pos, VECTOR _rot, VECTOR _scl, MATRIX _mat)
 	{

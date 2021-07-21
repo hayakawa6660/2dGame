@@ -3,13 +3,14 @@
 #include "Library/Common/commonObjects.h"
 #include "Source/System/CompressManager/CompressManager.h"
 #include "Source/System/ResourceManager/ResourceManager.h"
-#include "Source/System/RenderManager/Shader/Shader.h"
+
+#include "Library/Render/RenderManager.h"
+#include "Library/Render/Render3D/Shader3D/Shader3D.h"
 
 FieldManager::FieldManager(SceneBase * _scene) :
 	GameObject(_scene)
 {
 	CommonObjects* p = CommonObjects::GetInstance();
-	m_shader = p->FindGameObject<Shader>("Shader");
 	{	//モデルのzip解凍
 		CompressManager * c = p->FindGameObject<CompressManager>("CompressManager");
 		c->UnCompress("data\\Field.zip", "Field");
@@ -38,38 +39,15 @@ void FieldManager::Start()
 		ResourceManager* p = CommonObjects::GetInstance()->FindGameObject<ResourceManager>("SceneResource");
 		m_ground.handle = p->GetHandle(m_ground.fileName);
 		m_sky.handle = p->GetHandle(m_sky.fileName);
+
+		//モデルをRenderクラスに登録。
+		RenderManager::GetInstance()->AddMV1Model("Ground", m_ground.handle, Shader3D::MESH_TYPE::NMESH_DIFF_SPEC_NORM_SHADOW, Shader3D::MESH_TYPE::NMESH_SHADOW_SETUP_NORMALMAP);
+		RenderManager::GetInstance()->AddMV1Model("Sky", m_sky.handle, Shader3D::MESH_TYPE::NMESH_NO_LIGHTING_DIFFONLY_FOG, Shader3D::MESH_TYPE::NO_SHADER);
+
 		int a = 0;
 	}
 }
 
 void FieldManager::Update()
 {
-}
-
-void FieldManager::ShadowSetUp()
-{
-	//頂点シェーダーのみを入れ替えて、他キャラも同じピクセルシェーダーでやるので解除はしない
-	m_shader->SetMeshTypeShader(Shader::MESH_TYPE::NMESH_SHADOW_SETUP_NORMALMAP);
-	MV1DrawModel(m_ground.handle);
-
-	m_shader->SetMeshTypeShader(Shader::MESH_TYPE::NMESH_NO_LIGHTING_DIFFONLY_FOG);
-	MV1DrawModel(m_sky.handle);
-}
-
-void FieldManager::DrawSetUp()
-{
-	m_shader->SetMeshTypeShader(Shader::MESH_TYPE::NMESH_DIFF_SPEC_NORM_SHADOW);
-	MV1DrawModel(m_ground.handle);
-	m_shader->SetMeshTypeShader(Shader::MESH_TYPE::NO_SHADER);
-}
-
-void FieldManager::Draw()
-{
-	m_shader->SetMeshTypeShader(Shader::MESH_TYPE::NMESH_DIFF_SPEC_NORM_SHADOW);
-	MV1DrawModel(m_ground.handle);
-	m_shader->SetMeshTypeShader(Shader::MESH_TYPE::NO_SHADER);
-
-	m_shader->SetMeshTypeShader(Shader::MESH_TYPE::NMESH_NO_LIGHTING_DIFFONLY_FOG);
-	MV1DrawModel(m_sky.handle);
-	m_shader->SetMeshTypeShader(Shader::MESH_TYPE::NO_SHADER);
 }

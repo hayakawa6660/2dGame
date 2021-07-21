@@ -1,29 +1,32 @@
 #include "App.h"
 #include "SceneManager/SceneManager.h"
 #include "Common/commonObjects.h"
+#include "Render/RenderManager.h"
 
 void AppInit()
 {
 	SceneManager::GetInstance()->Start();
 	CommonObjects::GetInstance()->Start();
+	RenderManager::GetInstance();
 }
 
 void AppUpdate()
 {
 	SceneManager::GetInstance()->Update();
 	CommonObjects::GetInstance()->Update();
+	RenderManager::GetInstance()->Update();
 }
 
 void AppDraw()
 {
-	SceneManager::GetInstance()->Draw();
-	CommonObjects::GetInstance()->Draw();
+	RenderManager::GetInstance()->Draw();
 }
 
 void AppRelease()
 {
 	SceneManager::GetInstance()->Release();
 	CommonObjects::GetInstance()->Release();
+	RenderManager::GetInstance()->Release();
 }
 
 bool IsExitGame()

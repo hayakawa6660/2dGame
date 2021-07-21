@@ -30,7 +30,7 @@ void FadeManager::Update()
 		m_texture.handle = rsc->GetHandle(m_texture.fileName);
 	}
 }
-
+/*
 void FadeManager::Draw()
 {
 	//フェードを見やすくするため一旦白に
@@ -38,7 +38,7 @@ void FadeManager::Draw()
 	DrawExtendGraph(0, 0, m_texture.sizeX, m_texture.sizeY, m_texture.handle, true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
-
+*/
 void FadeManager::FadeStart(int _fadeCount)
 {
 	m_fadeCount = (float)_fadeCount;

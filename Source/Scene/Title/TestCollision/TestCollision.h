@@ -12,7 +12,6 @@ private:
 	void Load()override;
 	void Start()override;
 	void Update()override;
-	void Draw()override;
 	void OnCollision(const Hit_Info &_info)override;
 
 	void Hoge(const Hit_Info & _info);

@@ -37,9 +37,3 @@ void LoadData::Update()
 	int max = system->GetMaxSize() + scene->GetMaxSize();
 	m_percentage = (float)current / (float)max * 100.f;
 }
-
-void LoadData::Draw()
-{
-	//—ˆ‚Ä‚é‚©•ª‚©‚è‚â‚·‚­‚·‚é‚½‚ßˆê’U‚±‚±‚Å%•\Ž¦
-	//DrawFormatString(0, 60, 0xffffff, "%.2f", m_percentage);
-}

@@ -17,10 +17,6 @@ void CommonObjects::Update()
 	objectManager.Update();
 }
 
-void CommonObjects::Draw()
-{
-	objectManager.Draw();
-}
 
 void CommonObjects::Release()
 {

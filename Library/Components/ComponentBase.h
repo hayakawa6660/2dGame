@@ -12,7 +12,6 @@ public:
 	virtual ~ComponentBase() {}
 	virtual void Start() {}
 	virtual void Update() {}
-	virtual void Draw() {}
 
 protected:
 	std::string m_tag;		//‚±‚ÌƒNƒ‰ƒX‚Ì–¼‘O

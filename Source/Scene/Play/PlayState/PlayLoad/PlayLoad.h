@@ -11,7 +11,6 @@ private:
 	void Load()override;
 	void Start()override;
 	void Update()override;
-	void Draw()override;
 private:
 	bool m_canNext;
 

@@ -12,7 +12,6 @@ public:
 private:
 	void Start()override;
 	void Update()override;
-	void Draw()override;
 private:
 	float m_percentage;
 };

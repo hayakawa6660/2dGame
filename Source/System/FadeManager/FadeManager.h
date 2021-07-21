@@ -23,7 +23,6 @@ public:
 	FadeManager(SceneBase * _scene);
 	~FadeManager();
 	void Update()override;
-	void Draw()override;
 
 	//この関数にのみフェードのSetを認める
 	void FadeStart(int _fadeCount);

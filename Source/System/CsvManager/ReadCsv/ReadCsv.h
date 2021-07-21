@@ -11,7 +11,6 @@ public:
 	~ReadCsv() {}
 	void Start()override {}
 	void Update()override {}
-	void Draw()override {}
 	/// <summary>
 	/// 指定したファイルのCSVを読む
 	/// 要素数は読み込んだもので違うため、自身で相互確認すること

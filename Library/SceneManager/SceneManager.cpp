@@ -68,12 +68,6 @@ void SceneManager::Update()
 		m_currentScene->Update();
 }
 
-void SceneManager::Draw()
-{
-	if (m_currentScene != nullptr)
-		m_currentScene->Draw();
-}
-
 void SceneManager::Release()
 {
 	if (m_currentScene != nullptr) {

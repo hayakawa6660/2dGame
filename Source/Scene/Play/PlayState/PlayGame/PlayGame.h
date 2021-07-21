@@ -10,5 +10,4 @@ public:
 private:
 	void Start()override;
 	void Update()override;
-	void Draw()override;
 };

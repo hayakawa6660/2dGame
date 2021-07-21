@@ -91,18 +91,6 @@ void TitleScene::Update()
 #endif
 }
 
-void TitleScene::Draw()
-{
-	switch (m_state)
-	{
-	case STATE::PLAY:	SceneBase::Draw();	break;
-	default:	break;
-	}
-
-	DrawFormatString(200, 0, 0xffffff, "Title");
-	//DrawFString(10, 20, "AAA = %d", 20);
-}
-
 void TitleScene::Load()
 {
 	TestCollision * p = SceneBase::CreateGameObject<TestCollision>("Test1");

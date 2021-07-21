@@ -22,7 +22,3 @@ void PlayGame::Start()
 void PlayGame::Update()
 {
 }
-
-void PlayGame::Draw()
-{
-}

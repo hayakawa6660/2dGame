@@ -10,7 +10,6 @@ public:
 	static CommonObjects* GetInstance();
 	void Start();
 	void Update();
-	void Draw();
 	void Release();
 private:
 	GameObjectManager objectManager;

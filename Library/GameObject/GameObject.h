@@ -25,11 +25,7 @@ public:
 	virtual void Load() {}
 	virtual void Start() {}
 	virtual void Update() { ComponentUpdate(); }
-	virtual void Draw() { ComponentDraw(); }
-	virtual void DrawSetUp() {}
-	virtual void ShadowSetUp() {}
 	void ComponentUpdate();
-	void ComponentDraw();
 private:
 	struct Components_Info
 	{

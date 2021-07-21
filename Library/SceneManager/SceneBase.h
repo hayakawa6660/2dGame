@@ -8,10 +8,6 @@ public:
 	virtual ~SceneBase() {}
 
 	virtual void Update() { objectManager.Update(); }
-	virtual void ShadowSetUp() { objectManager.ShadowSetUp(); }
-	virtual void DrawSetUp() { objectManager.DrawSetUp(); }
-	virtual void Draw() { objectManager.Draw(); }
-
 private:
 	GameObjectManager objectManager;
 public:
