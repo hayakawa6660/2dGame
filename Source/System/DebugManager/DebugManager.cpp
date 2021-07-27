@@ -3,6 +3,7 @@
 
 #include "Library/Common/commonObjects.h"
 #include "../InputManager/InputManager.h"
+#include "Library/Render/RenderManager.h"
 
 #include <stdarg.h>
 #include <stdio.h>
@@ -18,10 +19,40 @@ DebugManager::DebugManager(SceneBase* _scene) :
 	m_active.emplace("Reset", false);
 	m_active.emplace("GameStop", false);
 	m_debugList.clear();
+
+	//テキスト描画をセットアップ
+	RenderManager::GetInstance()->AddText("DebugManager", [=]()
+	{
+		if (!m_isDebugMode)
+			return;
+		DrawFormatString(0, 0, 0xffffff, "DebugMode");
+		DrawFormatString(0, 20 + (20 * m_currentNum), 0xffffff, ">");
+
+		int num = 0;
+		for (auto &it : m_active)
+		{
+			char ch[256];
+			sprintf_s<256>(ch, " %d", it.second);
+			std::string str = it.first + ch;
+
+			DrawFormatString(15, 20 + (num * 20), 0xffffff, str.c_str());
+			num++;
+		}
+		num = (int)m_active.size();
+		for (auto &it : m_debugList)
+		{
+			char ch[256];
+			sprintf_s<256>(ch, " %d", it->GetActive());
+			std::string str = it->GetTag() + ch;
+			DrawFormatString(15, 20 + (num * 20), 0xffffff, str.c_str());
+			num++;
+		}
+	});
 }
 
 DebugManager::~DebugManager()
 {
+	RenderManager::GetInstance()->RemoveText("DebugManager");
 	m_active.clear();
 	m_debugList.clear();
 }
@@ -38,35 +69,7 @@ void DebugManager::Update()
 	ResetUpdate();
 	SelectUpdate();
 }
-/*
-void DebugManager::Draw()
-{
-	if (!m_isDebugMode)
-		return;
-	DrawFormatString(0, 0, 0xffffff, "DebugMode");
-	DrawFormatString(0, 20 + (20 * m_currentNum), 0xffffff, ">");
 
-	int num = 0;
-	for (auto &it : m_active)
-	{
-		char ch[256];
-		sprintf_s<256>(ch, " %d", it.second);
-		std::string str = it.first + ch;
-
-		DrawFormatString(15, 20 + (num * 20), 0xffffff, str.c_str());
-		num++;
-	}
-	num = (int)m_active.size();
-	for (auto &it : m_debugList)
-	{
-		char ch[256];
-		sprintf_s<256>(ch, " %d", it->GetActive());
-		std::string str = it->GetTag() + ch;
-		DrawFormatString(15, 20 + (num * 20), 0xffffff, str.c_str());
-		num++;
-	}
-}
-*/
 void DebugManager::SelectUpdate()
 {
 	InputManager * p = CommonObjects::GetInstance()->FindGameObject<InputManager>("InputManager");

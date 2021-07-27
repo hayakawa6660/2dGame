@@ -1,7 +1,6 @@
 #include "PlayerMovement.h"
 
 #include "Library/Common/commonObjects.h"
-//#include "Source/System/ControllerManager/ControllerManager.h"
 
 #include <assert.h>
 PlayerMovement::PlayerMovement() :
@@ -12,8 +11,6 @@ PlayerMovement::PlayerMovement() :
 	m_rotateSpeed(0.1f),
 	velocity(VGet(0,0,0))
 {
-	//m_input = CommonObjects::GetInstance()->FindGameObject<ControllerManager>("ControllerManager");
-	//assert(m_input);
 }
 
 PlayerMovement::~PlayerMovement()

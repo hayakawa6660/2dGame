@@ -7,8 +7,6 @@
 #include "Source/System/ThreadManager/ThreadManager.h"
 #include "Source/System/InputManager/InputManager.h"
 
-//#include "Source/System/ControllerManager/ControllerManager.h"
-
 SceneManager::SceneManager() :
 	m_nextName(""), m_currentName(""), m_currentScene(nullptr), m_factory(nullptr),
 	m_exit(false)
@@ -49,13 +47,7 @@ void SceneManager::Update()
 	{
 		m_exitGame = true;
 	}
-	/*
-	if (CommonObjects::GetInstance()->FindGameObject<ControllerManager>("ControllerManager")
-		->GetKeyInput(InputComponent::KEY_ID::ESC))
-	{
-		m_exitGame = true;
-	}
-	*/
+
 	if (m_exitGame)
 	{
 		ThreadManager * p = CommonObjects::GetInstance()->FindGameObject<ThreadManager>("ThreadManager");

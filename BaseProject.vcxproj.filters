@@ -146,6 +146,9 @@
     <Filter Include="ソース ファイル\Library\Render\Render3D\Shader3D">
       <UniqueIdentifier>{5344d9c0-b71e-4468-a6d2-3961268dcb2e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Library\Render\Render2D">
+      <UniqueIdentifier>{9c3dbf30-654a-4d5e-ba84-5379b9688f41}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Library\app.cpp">
@@ -291,6 +294,9 @@
     </ClCompile>
     <ClCompile Include="Library\Render\Render3D\Shader3D\Shader3D.cpp">
       <Filter>ソース ファイル\Library\Render\Render3D\Shader3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Render\Render2D\Render2D.cpp">
+      <Filter>ソース ファイル\Library\Render\Render2D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -461,6 +467,9 @@
     </ClInclude>
     <ClInclude Include="Library\Render\Render3D\Shader3D\Shader3D.h">
       <Filter>ソース ファイル\Library\Render\Render3D\Shader3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Render\Render2D\Render2D.h">
+      <Filter>ソース ファイル\Library\Render\Render2D</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

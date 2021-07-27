@@ -1,4 +1,4 @@
-#include <DxLib.h>
+#include <MyDxLib.h>
 #include "App.h"
 #include <EffekseerForDXLib.h>
 #include "Source/Config.h"

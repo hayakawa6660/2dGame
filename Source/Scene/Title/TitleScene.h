@@ -2,6 +2,7 @@
 
 #include "Library/SceneManager/SceneBase.h"
 #include <mutex>
+#include "Source/Common.h"
 
 class ThreadManager;
 class TitleScene : public SceneBase
@@ -15,6 +16,9 @@ private:
 	//void DrawFString(int _x, int _y, const char * _format...);
 private:
 	std::list<GameObject*> m_list;
+
+	Sprite_Info m_sprite;
+
 	bool m_isNewEnd;
 	ThreadManager * m_thread;
 	enum class STATE

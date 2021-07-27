@@ -24,7 +24,6 @@ BootScene::BootScene()
 
 	p->CreateGameObject<ResourceManager>("SceneResource");
 	p->CreateGameObject<ResourceManager>("SystemResource");
-	//p->CreateGameObject<ControllerManager>("ControllerManager");
 	p->CreateGameObject<DebugManager>("DebugManager");
 	p->CreateGameObject<LoadManager>("LoadManager");
 	p->CreateGameObject<CsvManager>("CsvManager");
@@ -42,6 +41,8 @@ BootScene::BootScene()
 	InputManager * input = p->CreateGameObject<InputManager>("InputManager");
 	input->AddKeyBind("ESC", KEY_INPUT_ESCAPE);
 	input->AddKeyBind("SPACE", KEY_INPUT_SPACE);
+	input->AddKeyBind("LSHIFT", KEY_INPUT_LSHIFT);
+
 	input->AddKeyBind("DEBUG", KEY_INPUT_LCONTROL);
 	input->AddKey("DEBUG", KEY_INPUT_LALT);
 	input->AddKeyBind("UP", KEY_INPUT_UP);

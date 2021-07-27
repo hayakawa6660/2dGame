@@ -28,6 +28,7 @@
     <ClCompile Include="Library\GameObject\GameObject.cpp" />
     <ClCompile Include="Library\GameObject\GameObjectManager.cpp" />
     <ClCompile Include="Library\main.cpp" />
+    <ClCompile Include="Library\Render\Render2D\Render2D.cpp" />
     <ClCompile Include="Library\Render\Render3D\Camera\Camera.cpp" />
     <ClCompile Include="Library\Render\Render3D\Render3D.cpp" />
     <ClCompile Include="Library\Render\Render3D\Shader3D\Shader3D.cpp" />
@@ -78,6 +79,7 @@
     <ClInclude Include="Library\Components\PolygonSetComponent\PolygonSetComponent.h" />
     <ClInclude Include="Library\GameObject\GameObject.h" />
     <ClInclude Include="Library\GameObject\GameObjectManager.h" />
+    <ClInclude Include="Library\Render\Render2D\Render2D.h" />
     <ClInclude Include="Library\Render\Render3D\Camera\Camera.h" />
     <ClInclude Include="Library\Render\Render3D\Render3D.h" />
     <ClInclude Include="Library\Render\Render3D\Shader3D\Shader3D.h" />

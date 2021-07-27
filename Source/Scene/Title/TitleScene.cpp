@@ -13,6 +13,8 @@
 //Debug
 #include "Source/System/DebugManager/DebugManager.h"
 #include "Source/System/CompressManager/CompressManager.h"
+//Render
+#include "Library/Render/RenderManager.h"
 
 TitleScene::TitleScene() :
 	m_isNewEnd(false), m_state(STATE::NEW)
@@ -21,6 +23,22 @@ TitleScene::TitleScene() :
 	common->FindGameObject<FadeManager>("FadeManager")->SetFadeLevel(0);
 	m_thread = common->FindGameObject<ThreadManager>("ThreadManager");
 	m_thread->CreateThread<void>([this] { Load(); });
+
+	{	//テスト画像描画(resourceマネージャー使うの面倒だったのでその場ロード)
+		ResourceManager * resource = common->FindGameObject<ResourceManager>("SceneResource");
+		m_sprite.fileName = "data\\Texture\\test.png";
+		m_sprite.position = VGet(300, 300, 1);
+		m_sprite.sizeX = 64;
+		m_sprite.sizeY = 64;
+		m_sprite.handle = LoadGraph(m_sprite.fileName.c_str());
+		RenderManager::GetInstance()->AddTexture("Test", m_sprite, [=]() {
+			DrawRectGraph(m_sprite.position.x, m_sprite.position.y, 0, 0, m_sprite.sizeX, m_sprite.sizeY, m_sprite.handle, true, false);
+		});
+		//二重追加弾き確認
+		RenderManager::GetInstance()->AddTexture("Test", m_sprite, [=]() {
+			DrawRectGraph(m_sprite.position.x, m_sprite.position.y, 0, 0, m_sprite.sizeX, m_sprite.sizeY, m_sprite.handle, true, false);
+		});
+	}
 
 	/*
 	TestCollision * p = SceneBase::CreateGameObject<TestCollision>("Test1");
@@ -55,6 +73,9 @@ TitleScene::~TitleScene()
 
 void TitleScene::Update()
 {
+	m_sprite.position.x += 0.1f;
+	if (m_sprite.position.x >= 330.f)
+		RenderManager::GetInstance()->RemoveTexture("Test");
 	//SceneBase::Update();
 	switch (m_state)
 	{
@@ -81,7 +102,7 @@ void TitleScene::Update()
 		SceneBase::Update();
 		InputManager * p = CommonObjects::GetInstance()->FindGameObject<InputManager>("InputManager");
 		//if (p->GetKeyOnceInput(InputComponent::KEY_ID::SPACE))
-		if(p->IsTrigger("SPACE"))
+		if (p->IsTrigger("SPACE"))
 			SceneManager::GetInstance()->ChangeScene("PlayScene"); // 起動が終わったらTitleを表示
 		break;
 	}

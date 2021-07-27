@@ -2,12 +2,29 @@
 
 #include "../DebugManager/DebugManager.h"
 #include "Library/Common/commonObjects.h"
-//#include "Source/System/ControllerManager/ControllerManager.h"
+#include "Source/System/InputManager/InputManager.h"
+#include "Library/Render/RenderManager.h"
 
 CacheManager::CacheManager(SceneBase * _scene) :
 	GameObject(nullptr)
 {
 	m_cache.clear();
+#if DEBUG
+	RenderManager::GetInstance()->AddText("CacheManagerText", [=]()
+	{
+		int i = 0;
+		for (auto& it : m_cache)
+		{
+			char ch[256];
+			sprintf_s<256>(ch, "\nsampleNum %d | time %05lldus | ave %lldus | min %lldus | max %lldus",
+				it.second.num, it.second.time, it.second.average, it.second.minTime, it.second.maxTime);
+			std::string str = it.first + ch;
+			Debug::DebugPrintf(150, 20 + (i * 40), "Cache", str.c_str());
+			++i;
+		}
+		Debug::DebugPrintf(180, 0, "Cache", "Cache");
+	});
+#endif
 }
 
 CacheManager::~CacheManager()
@@ -23,22 +40,9 @@ void CacheManager::Start()
 void CacheManager::Update()
 {
 #if DEBUG
-	/*
-	if (CommonObjects::GetInstance()->FindGameObject<ControllerManager>("ControllerManager")
-		->GetKeyInput(InputComponent::KEY_ID::SHIFT))
+	if (CommonObjects::GetInstance()->FindGameObject<InputManager>("InputManager")
+		->IsTrigger("LSHIFT"))
 		m_cache.clear();
-	Debug::DebugPrintf(180, 0, "Cache", "Cache");
-	int i = 0;
-	for (auto &it : m_cache)
-	{
-		char ch[256];
-		sprintf_s<256>(ch, "\nsampleNum %d | time %05lldus | ave %lldus | min %lldus | max %lldus",
-			it.second.num, it.second.time, it.second.average, it.second.minTime, it.second.maxTime);
-		std::string str = it.first + ch;
-		Debug::DebugPrintf(150, 20 + (i * 40), "Cache", str.c_str());
-		++i;
-	}
-	*/
 #endif
 }
 

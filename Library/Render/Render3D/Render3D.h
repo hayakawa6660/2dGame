@@ -36,5 +36,6 @@ public:
 	bool DeleteCamera();
 	const Camera *GetCamera()const { return m_camera; }
 	//•`‰æ‚·‚éƒ‚ƒfƒ‹‚ğ’Ç‰Á‚·‚éB
-	bool AddMV1Model(std::string _name, int _handler, Shader3D::MESH_TYPE _mesh, Shader3D::MESH_TYPE _shadowMesh, bool _isWaterDraw = false, bool _isTriangleDraw = false);
+	bool AddMV1Model(const std::string &_name, int _handler, Shader3D::MESH_TYPE _mesh, Shader3D::MESH_TYPE _shadowMesh, bool _isWaterDraw = false, bool _isTriangleDraw = false);
+	bool RemoveMV1Model(const std::string &_name);
 };

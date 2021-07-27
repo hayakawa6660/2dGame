@@ -184,7 +184,7 @@ bool Render3D::DeleteCamera()
 	return false;
 }
 
-bool Render3D::AddMV1Model(std::string _name, int _handler, Shader3D::MESH_TYPE _mesh, Shader3D::MESH_TYPE _shadowMesh, bool _isWaterDraw, bool _isTriangleDraw)
+bool Render3D::AddMV1Model(const std::string &_name, int _handler, Shader3D::MESH_TYPE _mesh, Shader3D::MESH_TYPE _shadowMesh, bool _isWaterDraw, bool _isTriangleDraw)
 {
 	//‚à‚µ‘¶İ‚µ‚½‚ç’Ç‰Á‚µ‚È‚¢
 	if (m_mv1RenderList.count(_name)) return false;
@@ -196,4 +196,13 @@ bool Render3D::AddMV1Model(std::string _name, int _handler, Shader3D::MESH_TYPE 
 	info.isTriangleDraw = _isTriangleDraw;
 	m_mv1RenderList.emplace(_name, info);
 	return true;
+}
+
+bool Render3D::RemoveMV1Model(const std::string &_name)
+{
+	//‚à‚µ‘¶İ‚µ‚È‚©‚Á‚½‚çdelete‚µ‚È‚¢
+	if (!m_mv1RenderList.count(_name)) return false;
+
+	m_mv1RenderList.erase(_name);	//ŠY“–‚·‚é–¼‘O‚Ìƒ‚ƒfƒ‹‚ğíœ
+	return false;
 }
