@@ -31,7 +31,7 @@ public:
 	//テクスチャを追加する。成功したらtrue
 	bool AddTexture(std::string _name, Sprite_Info& _sprite, std::function<void()> _func);
 	bool RemoveTexture(std::string _name);
-	//テキストを追加する
+	//テキストを追加する。成功したらtrue
 	bool AddText(std::string _name, std::function<void()> _func);
 	bool RemoveText(std::string _name);
 	//モデルを追加する。成功したらtrue
