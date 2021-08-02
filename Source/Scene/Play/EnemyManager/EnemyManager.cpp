@@ -5,6 +5,8 @@
 #include "Source/System/ResourceManager/ResourceManager.h"
 #include "Source/System/InputManager/InputManager.h"
 
+#include "Library/Render/RenderManager.h"
+
 //#include "Source/System/KeyboardManager/KeyboardManager.h"
 
 EnemyManager::EnemyManager(SceneBase * _scene) :
@@ -49,9 +51,11 @@ void EnemyManager::Start()
 	m_anim->SetBlendFlag(true);
 	m_anim->Play("Run", 0.1f);
 	//逆再生移動確認用
-	//m_anim->SetReverce(true);
+	m_anim->SetReverce(false);
 	//これをセットすると移動量が取得できるようになる。
 	m_anim->SetRootName("root");
+
+	RenderManager::GetInstance()->AddMV1Model("Enemy", m_testModel.handle, Shader3D::MESH_TYPE::SKIN8_SHADOW_SETUP_NOT_NORMAL, Shader3D::MESH_TYPE::SKIN4_DIFF_SPEC_NORM, false, true);
 }
 
 void EnemyManager::Update()
@@ -81,13 +85,18 @@ void EnemyManager::Update()
 	//移動量が元の大きさなので、現在の大きさに合わせる。
 	MATRIX mScl = MGetScale(GameObject::GetScale());
 	MATRIX mRotY = mScl * MGetRotY(rot.y);
-	VECTOR v = VTransform(velocity, mRotY);
+	VECTOR newVelocity = VTransform(velocity, mRotY);
 	//ローカルは軸が逆なので-=
 	VECTOR pos = GameObject::GetPosition();
-	pos -= v;
+	pos += newVelocity;
 	pos.y = 0.f;
 	GameObject::SetRotation(rot);
 	GameObject::SetPosition(pos);
+
+	//Drawが無くなったので、UpdateにSetMatrix()や、SetPosition()まで書く
+	//Scl * mRotYが↑にあるのでついでにそれを使う
+	MATRIX mTrans = mRotY * MGetTranslate(GameObject::GetPosition());
+	MV1SetMatrix(m_testModel.handle, mTrans);
 }
 
 
