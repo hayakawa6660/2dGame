@@ -5,7 +5,8 @@
 ResourceManager::ResourceManager(SceneBase * _scene) :
 	GameObject(nullptr),
 	m_currentSize(0),
-	m_maxSize(0)
+	m_maxSize(0),
+	m_isLoadEnd(true)
 {
 	m_resource.clear();
 }
@@ -109,52 +110,56 @@ void ResourceManager::ShaderDelete(std::string _file)
 	itr = m_resource.erase(itr);
 }
 
-void ResourceManager::ModelLoad(std::string _file)
+void ResourceManager::ModelLoad(std::string _file, std::function<void()> _func)
 {
 	if (m_resource.count(_file) == TRUE)	//もし既にキーが存在するならロードしない
 		return;
-
+	m_isLoadEnd = false;
 	m_resource[_file].initialize = false;
 	m_resource[_file].type = TYPE::MODEL;
+	m_resource[_file].onCompleted = _func;
 	AddFileSize(_file);		//ロードする前にファイルの%最大量を足しておく
 	SetUseASyncLoadFlag(TRUE);
 	m_resource[_file].handle = MV1LoadModel(_file.c_str());
 	SetUseASyncLoadFlag(FALSE);
 }
 
-void ResourceManager::SoundLoad(std::string _file)
+void ResourceManager::SoundLoad(std::string _file, std::function<void()> _func)
 {
 	if (m_resource.count(_file) == TRUE)	//もし既にキーが存在するならロードしない
 		return;
-
+	m_isLoadEnd = false;
 	m_resource[_file].initialize = false;
 	m_resource[_file].type = TYPE::SOUND;
+	m_resource[_file].onCompleted = _func;
 	AddFileSize(_file);		//ロードする前にファイルの%最大量を足しておく
 	SetUseASyncLoadFlag(TRUE);
 	m_resource[_file].handle = LoadSoundMem(_file.c_str());
 	SetUseASyncLoadFlag(FALSE);
 }
 
-void ResourceManager::TextureLoad(std::string _file)
+void ResourceManager::TextureLoad(std::string _file, std::function<void()> _func)
 {
 	if (m_resource.count(_file) == TRUE)	//もし既にキーが存在するならロードしない
 		return;
-
+	m_isLoadEnd = false;
 	m_resource[_file].initialize = false;
 	m_resource[_file].type = TYPE::TEXTURE;
+	m_resource[_file].onCompleted = _func;
 	AddFileSize(_file);		//ロードする前にファイルの%最大量を足しておく
 	SetUseASyncLoadFlag(TRUE);
 	m_resource[_file].handle = LoadGraph(_file.c_str());
 	SetUseASyncLoadFlag(FALSE);
 }
 
-void ResourceManager::ShaderLoad(std::string _file, bool _isVertex)
+void ResourceManager::ShaderLoad(std::string _file, bool _isVertex, std::function<void()> _func)
 {
 	if (m_resource.count(_file) == TRUE)	//もし既にキーが存在するならロードしない
 		return;
-
+	m_isLoadEnd = false;
 	m_resource[_file].initialize = false;
 	m_resource[_file].type = TYPE::SHADER;
+	m_resource[_file].onCompleted = _func;
 	AddFileSize(_file);		//ロードする前にファイルの%最大量を足しておく
 	SetUseASyncLoadFlag(TRUE);
 	if (_isVertex)
@@ -220,8 +225,10 @@ void ResourceManager::ResetLoadSize()
 	m_currentSize = 0;
 }
 
-bool ResourceManager::AllLoadEndCheck()
+void ResourceManager::AllLoadEndCheck()
 {
+	if (m_isLoadEnd)
+		return;
 	for (auto & it : m_resource)
 	{
 		try
@@ -231,12 +238,15 @@ bool ResourceManager::AllLoadEndCheck()
 			int check = CheckHandleASyncLoad(it.second.handle);
 			if (check == TRUE)
 			{
-				return false;
+				m_isLoadEnd = false;
+				return;
 			}
 			else if (check == FALSE)
 			{
 				it.second.initialize = true;
 				m_currentSize += it.second.size;
+				//もし関数があるのならそれを呼ぶ
+				if (it.second.onCompleted)	it.second.onCompleted();
 			}
 			else if (check == -1)
 			{
@@ -248,7 +258,7 @@ bool ResourceManager::AllLoadEndCheck()
 			MessageBox(NULL, ("以下のモデルはありません\n" + e).c_str(), "ResourceManager", MB_ICONERROR | MB_OK);
 		}
 	}
-	return true;
+	m_isLoadEnd = true;
 }
 
 

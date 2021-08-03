@@ -14,6 +14,8 @@ private:
 	void Load()override;
 	void Start()override;
 	void Update()override;
+
+	void SetUpModel();
 private:
 	Model_Info m_testModel;
 	//検索時間削減のコピーポインタ

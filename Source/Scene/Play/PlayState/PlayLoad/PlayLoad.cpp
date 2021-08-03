@@ -69,7 +69,7 @@ void PlayLoad::Update()
 	case STATE::LOAD:
 	{
 		ResourceManager * rsc = CommonObjects::GetInstance()->FindGameObject<ResourceManager>("SceneResource");
-		if (rsc->AllLoadEndCheck())
+		if (rsc->IsLoadEnd())
 		{
 			PlayScene * p = dynamic_cast<PlayScene*>(GameObject::GetScene());
 			p->SetNextState<PlayGame>("PlayGame");		//オブジェクトのUpdataを1フレーム回し、Load関数に入れる

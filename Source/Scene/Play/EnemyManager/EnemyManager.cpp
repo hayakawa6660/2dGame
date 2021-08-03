@@ -7,8 +7,6 @@
 
 #include "Library/Render/RenderManager.h"
 
-//#include "Source/System/KeyboardManager/KeyboardManager.h"
-
 EnemyManager::EnemyManager(SceneBase * _scene) :
 	GameObject(_scene),
 	m_hogeTime(120)
@@ -25,11 +23,12 @@ EnemyManager::EnemyManager(SceneBase * _scene) :
 
 	//キー追加チェック
 	key->AddKey("Hoge", KEY_INPUT_LCONTROL);
-
 }
 
 EnemyManager::~EnemyManager()
 {
+	InputManager * key = CommonObjects::GetInstance()->FindGameObject<InputManager>("InputManager");
+	key->RemoveKeyBind("Hoge");
 }
 
 void EnemyManager::Load()
@@ -38,24 +37,15 @@ void EnemyManager::Load()
 		ResourceManager* p = CommonObjects::GetInstance()->FindGameObject<ResourceManager>("SceneResource");
 		m_testModel.fileName = "data\\Test\\PC.mv1";
 		p->ModelLoad(m_testModel.fileName);
-		p->ModelLoad("data\\Test\\Anim_Run.mv1");
+		p->ModelLoad("data\\Test\\Anim_Run.mv1", [=] {
+			SetUpModel();
+		});
 	}
 }
 
 void EnemyManager::Start()
 {
-	ResourceManager* p = CommonObjects::GetInstance()->FindGameObject<ResourceManager>("SceneResource");
-	m_testModel.handle = MV1DuplicateModel(p->GetHandle(m_testModel.fileName));
-	m_anim->SetBody(m_testModel.handle);
-	m_anim->SetAnim("Run", p->GetHandle("data\\Test\\Anim_Run.mv1"));
-	m_anim->SetBlendFlag(true);
-	m_anim->Play("Run", 0.1f);
-	//逆再生移動確認用
-	m_anim->SetReverce(false);
-	//これをセットすると移動量が取得できるようになる。
-	m_anim->SetRootName("root");
-
-	RenderManager::GetInstance()->AddMV1Model("Enemy", m_testModel.handle, Shader3D::MESH_TYPE::SKIN8_SHADOW_SETUP_NOT_NORMAL, Shader3D::MESH_TYPE::SKIN4_DIFF_SPEC_NORM, false, true);
+	int a = 0;
 }
 
 void EnemyManager::Update()
@@ -97,6 +87,22 @@ void EnemyManager::Update()
 	//Scl * mRotYが↑にあるのでついでにそれを使う
 	MATRIX mTrans = mRotY * MGetTranslate(GameObject::GetPosition());
 	MV1SetMatrix(m_testModel.handle, mTrans);
+}
+
+void EnemyManager::SetUpModel()
+{
+	ResourceManager* p = CommonObjects::GetInstance()->FindGameObject<ResourceManager>("SceneResource");
+	m_testModel.handle = MV1DuplicateModel(p->GetHandle(m_testModel.fileName));
+	m_anim->SetBody(m_testModel.handle);
+	m_anim->SetAnim("Run", p->GetHandle("data\\Test\\Anim_Run.mv1"));
+	m_anim->SetBlendFlag(true);
+	m_anim->Play("Run", 0.1f);
+	//逆再生移動確認用
+	m_anim->SetReverce(false);
+	//これをセットすると移動量が取得できるようになる。
+	m_anim->SetRootName("root");
+
+	RenderManager::GetInstance()->AddMV1Model("Enemy", m_testModel.handle, Shader3D::MESH_TYPE::SKIN8_SHADOW_SETUP_NOT_NORMAL, Shader3D::MESH_TYPE::SKIN4_DIFF_SPEC_NORM, false, true);
 }
 
 

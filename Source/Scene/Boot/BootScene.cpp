@@ -67,7 +67,7 @@ BootScene::~BootScene()
 void BootScene::Update()
 {
 	ResourceManager *p = CommonObjects::GetInstance()->FindGameObject<ResourceManager>("SystemResource");
-	if (p->AllLoadEndCheck())
+	if (p->IsLoadEnd())
 	{
 		p->ResetLoadSize();
 		SceneManager::GetInstance()->ChangeScene("TitleScene"); // ‹N“®‚ªI‚í‚Á‚½‚çTitle‚ğ•\¦

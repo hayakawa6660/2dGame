@@ -2,6 +2,7 @@
 
 #include "Library/GameObject/GameObject.h"
 #include <map>
+#include <functional>
 
 class ResourceManager : public GameObject {
 public:
@@ -24,24 +25,24 @@ public:
 	/// 指定したファイルの場所からモデルをロードする
 	/// </summary>
 	/// <param name="_file">ファイルのパス</param>
-	void ModelLoad(std::string _file);
+	void ModelLoad(std::string _file, std::function<void()> _func = nullptr);
 
 	/// <summary>
 	/// 指定したファイルの場所からサウンドをロードする
 	/// </summary>
 	/// <param name="_file">ファイルのパス</param>
-	void SoundLoad(std::string _file);
+	void SoundLoad(std::string _file, std::function<void()> _func = nullptr);
 
 	/// <summary>
 	/// 指定したファイルの場所からテクスチャーをロードする
 	/// </summary>
 	/// <param name="_file">ファイルのパス</param>
-	void TextureLoad(std::string _file);
+	void TextureLoad(std::string _file, std::function<void()> _func = nullptr);
 	/// <summary>
 	/// 指定したファイルの場所からテクスチャーをロードする
 	/// </summary>
 	/// <param name="_file">ファイルのパス</param>
-	void ShaderLoad(std::string _file, bool _isVertex);
+	void ShaderLoad(std::string _file, bool _isVertex, std::function<void()> _func = nullptr);
 
 	/// <summary>
 	/// 指定したモデルがロード終わっているか確認する
@@ -55,7 +56,7 @@ public:
 	/// すべてのモデルがロード完了しているか確認する
 	/// </summary>
 	/// <returns>全て完了していたらTRUE</returns>
-	bool AllLoadEndCheck();
+	void AllLoadEndCheck();
 
 
 	/// <summary>
@@ -95,9 +96,12 @@ private:
 		int size;
 		bool initialize;
 		TYPE type;
+		std::function<void()> onCompleted;
 	};
 	std::map<std::string, Resource_Info> m_resource;
+	bool m_isLoadEnd;
 public:
 	unsigned int GetMaxSize()const { return m_maxSize; }
 	unsigned int GetCurrentSize()const { return m_currentSize; }
+	bool IsLoadEnd()const { return m_isLoadEnd; }
 };

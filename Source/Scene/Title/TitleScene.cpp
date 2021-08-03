@@ -91,7 +91,7 @@ void TitleScene::Update()
 	case STATE::LOAD:
 	{
 		ResourceManager *p = CommonObjects::GetInstance()->FindGameObject<ResourceManager>("SceneResource");
-		if (p->AllLoadEndCheck())
+		if (p->IsLoadEnd())
 		{
 			SceneBase::Update();
 			m_state = STATE::PLAY;
